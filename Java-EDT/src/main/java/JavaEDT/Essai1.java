@@ -10,9 +10,10 @@ import javax.swing.JFrame;
 public class Essai1 {
     public static void main(String[] args){
 
-    Fenetre fenetre = new Fenetre();
-    //Connexion fenetreConnexion = new Connexion();
+    //Fenetre fenetre = new Fenetre();
+    Connexion fenetreConnexion = new Connexion();
     //EDT fenetreEDT = new EDT();
     //Panneau fenetreEDT = new Panneau();
+    
   }       
 }
