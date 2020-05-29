@@ -1,90 +1,109 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package JavaEDT;
+import java.awt.*;
+import javax.swing.*;
 
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.Dimension;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.event.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-
-public class Connexion extends JFrame {
-    
+public class Connexion extends JFrame{
+    Color couleur = new Color(196, 196, 196);
+    private JLabel logo, login,connect, Labelemail, Labelmdp = new JLabel();
     private JTextField email, mdp;
-    private JLabel login,connect, Labelemail, Labelmdp;
+    private JPanel panellogin = new JPanel();
     
     public Connexion(){
-    //Color cool = new Color(199, 254, 235);
-    Color cool = new Color(195, 195, 195); 
+        this.setTitle("Connexion");
+
+        // Mettre en plein écran automatiquement
+        this.pack();
+        this.setDefaultLookAndFeelDecorated(true);
+        this.setExtendedState(this.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         
-    this.setTitle("Connexion");
-    this.setSize(400, 300);
-    this.setLocationRelativeTo(null);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
-    Font police = new Font("Arial", Font.BOLD, 15);
-    
-    JPanel panellogin = new JPanel();
-    panellogin.setBackground(cool);
-    panellogin.setPreferredSize(new Dimension(170, 60)); 
-    //Icône Login
-    login = new JLabel(new ImageIcon("IconeLogin.png"));
-    panellogin.add(login);
-    
-    JPanel panelhaut = new JPanel();
-    panelhaut.setBackground(cool);
-    panelhaut.setPreferredSize(new Dimension(170, 60));
-    connect = new JLabel("Connectez-vous !");
-    connect.setFont(police);
-    panelhaut.add(connect);
-    
-    JPanel panel = new JPanel();
-    
-    JPanel panelEmail = new JPanel();
-    panelEmail.setBackground(cool);
-    panelEmail.setPreferredSize(new Dimension(220, 30));
-    email = new JTextField();
-    email.setPreferredSize(new Dimension(150, 25));
-    Labelemail = new JLabel("Email : ");
-    Labelemail.setFont(police);
-    panelEmail.add(Labelemail, BorderLayout.CENTER);
-    panelEmail.add(email);
-    
-    JPanel panelMDP = new JPanel();
-    panelMDP.setBackground(cool);
-    panelMDP.setPreferredSize(new Dimension(220, 30));
-    mdp = new JTextField();
-    mdp.setPreferredSize(new Dimension(90, 25));
-    Labelmdp = new JLabel("Mot de passe : ");
-    Labelmdp.setFont(police);
-    panelMDP.add(Labelmdp);
-    panelMDP.add(mdp);
-    
-    panel.setBackground(cool);
-    panel.add(panelEmail);
-    panel.add(panelMDP);
-    
-    JPanel panelbas = new JPanel();
-    panelbas.setBackground(cool);
-    panelbas.setPreferredSize(new Dimension(220, 60));
-    JButton okBouton = new JButton("Connexion");
-    panelbas.add(okBouton);
-    
-    this.getContentPane().add(panellogin);
-    this.getContentPane().add(panelhaut, BorderLayout.NORTH);
-    this.getContentPane().add(panel, BorderLayout.CENTER);
-    this.getContentPane().add(panelbas, BorderLayout.SOUTH);
-    this.setVisible(true);
-    }
-    
-    private class ConnectButtonListener implements ActionListener {
-        public void actionPerformed(ActionEvent i) {
-            
-        }
-    }
+        Font police1 = new Font("Arial", Font.BOLD, 25);
+        Font police2 = new Font("Arial", Font.BOLD, 15);
+        
+        //Container principal
+        JPanel container = new JPanel();
+        container.setLayout(new BorderLayout());
+        
+        //Zone du logo
+        JPanel paneltop = new JPanel();
+        paneltop.setLayout(new BorderLayout());
+        paneltop.setBackground(couleur);
+        paneltop.setPreferredSize(new Dimension(800, 300)); 
+        
+        logo = new JLabel(new ImageIcon("logo_ece.png"));
+        
+        JPanel panIcon = new JPanel();
+        panIcon.setBackground(couleur);
+        panIcon.setLayout(new BorderLayout());
+        panIcon.add(logo);
+        
+        paneltop.add(panIcon, BorderLayout.NORTH);
+        
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.setPreferredSize(new Dimension(350, 90));
+        
+        //Zone du Connectez-vous !
+        JPanel panelhaut = new JPanel();
+        panelhaut.setBackground(couleur);
+        panelhaut.setPreferredSize(new Dimension(170, 100));
+        connect = new JLabel("Bienvenue sur votre Hyperplanning. Connectez-vous !");
+        connect.setFont(police1);
+        panelhaut.add(connect);
+           
+        //Zone de l'email
+        JPanel panelEmail = new JPanel();
+        panelEmail.setBackground(couleur);
+        panelEmail.setPreferredSize(new Dimension(220, 30));
+        email = new JTextField();
+        email.setPreferredSize(new Dimension(150, 25));
+        Labelemail = new JLabel("Email : ");
+        Labelemail.setFont(police2);
+        panelEmail.add(Labelemail, BorderLayout.CENTER);
+        panelEmail.add(email);
+        
+        //Zone du mot de passe
+        JPanel panelMDP = new JPanel();
+        panelMDP.setBackground(couleur);
+        panelMDP.setPreferredSize(new Dimension(220, 30));
+        mdp = new JTextField();
+        mdp.setPreferredSize(new Dimension(90, 25));
+        Labelmdp = new JLabel("Mot de passe : ");
+        Labelmdp.setFont(police2);
+        panelMDP.add(Labelmdp);
+        panelMDP.add(mdp);
+
+        JPanel panelinfo = new JPanel();
+        panelinfo.setPreferredSize(new Dimension(220, 70));
+        panelinfo.setBackground(couleur);
+        panelinfo.add(panelEmail, BorderLayout.NORTH);
+        panelinfo.add(panelMDP, BorderLayout.CENTER);
+        
+        panel.setBackground(couleur);
+        panel.add(panelhaut, BorderLayout.NORTH);
+        panel.add(panelinfo, BorderLayout.CENTER);
+
+
+        //Zone du bouton connexion
+        JPanel panelbas = new JPanel();
+        panelbas.setBackground(couleur);
+        panelbas.setPreferredSize(new Dimension(220, 100));
+        JButton okBouton = new JButton("Connexion");
+        panelbas.add(okBouton);
+        
+        container.setBackground(couleur);
+        container.add(paneltop, BorderLayout.NORTH);
+        container.add(panel, BorderLayout.CENTER);
+        container.add(panelbas, BorderLayout.SOUTH);
+        this.setContentPane(container);
+        this.setVisible(true);
+        
+        
+    }    
 }
