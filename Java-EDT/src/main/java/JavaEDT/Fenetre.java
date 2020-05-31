@@ -11,12 +11,17 @@ public class Fenetre extends JFrame {
   
   Color couleur = new Color(96, 96, 96);
   private JPanel container = new JPanel();
-  private JPanel pan = new Panneau();
+  //private JPanel pan = new Panneau();
+  //private JPanel pan = new Recapitulatif();
+  private JPanel panel;
   private JComboBox combo1 = new JComboBox();
   private JComboBox combo2 = new JComboBox();
   private JButton bouton1 = new JButton();
   
-  public Fenetre(){
+  
+  public Fenetre(JPanel pan){
+    
+      this.panel = pan;
     this.setTitle("Mon emploi du temps");
     
     // Mettre en plein écran automatiquement
