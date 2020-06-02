@@ -4,6 +4,9 @@ import java.awt.event.*;
 import javax.swing.*;
  
 public class Panneau extends JPanel { 
+   public void paintComponent(Graphics g){
+    
+  }
   public void AffichageBaseEDT(Graphics g){ 
     
     //Colonne pour l'emploi du temps
@@ -127,8 +130,7 @@ public class Panneau extends JPanel {
     g.drawString("Mai", 1285, 50);
     g.drawString("Juin", 1420, 50);
     
+    System.out.println(this.getHeight());
+    System.out.println(this.getWidth());
   }   
-  public void AffichageCours(Graphics g){
-  
-  }
 }

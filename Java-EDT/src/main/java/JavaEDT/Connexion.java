@@ -124,7 +124,8 @@ public class Connexion extends JFrame{
         connexion.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent arg0) {
         connexion(getEmail(), getMdp());
-        setVisible(false);
+        //connexion.removeAll();
+        //setVisible(false);
         //Panneau fenetreEDT = new Panneau();
         //Fenetre EDT = new Fenetre(fenetreEDT);
         }
