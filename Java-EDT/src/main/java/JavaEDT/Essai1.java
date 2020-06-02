@@ -11,10 +11,10 @@ public class Essai1 {
     public static void main(String[] args){
         
     //Panneau fenetreEDT = new Panneau();
-    Recapitulatif fenetreRecap = new Recapitulatif();
+    //Recapitulatif fenetreRecap = new Recapitulatif();
     
-    Fenetre fenetre = new Fenetre(fenetreRecap);
-    //Connexion fenetreConnexion = new Connexion();
+    //Fenetre fenetre = new Fenetre(fenetreRecap);
+    Connexion fenetreConnexion = new Connexion();
     //EDT fenetreEDT = new EDT();
     
     
