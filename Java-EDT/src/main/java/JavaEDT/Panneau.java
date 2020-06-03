@@ -6,9 +6,7 @@ import javax.swing.*;
 public class Panneau extends JPanel { 
    public void paintComponent(Graphics g){
     
-  }
-  public void AffichageBaseEDT(Graphics g){ 
-    
+
     //Colonne pour l'emploi du temps
     Color couleur1 = new Color(61, 175, 175);
     Color couleur2 = new Color(195, 195, 195); 
@@ -110,15 +108,6 @@ public class Panneau extends JPanel {
         carrex=carrex+l;    
     }
     
-    /*int lignex1 = 2;  
-    int lignex2 = 130;
-    for (int i=1; i<=12; i++)
-    { 
-        g.drawLine(lignex1, 50, lignex2, 50); 
-        lignex1 = lignex2+5;
-        lignex2 = lignex1+130;
-    }*/
-    
     g.drawString("Septembre", 60, 50);
     g.drawString("Octobre", 210, 50);
     g.drawString("Novembre", 355, 50);
@@ -130,7 +119,78 @@ public class Panneau extends JPanel {
     g.drawString("Mai", 1285, 50);
     g.drawString("Juin", 1420, 50);
     
-    System.out.println(this.getHeight());
-    System.out.println(this.getWidth());
+    //////////////////////////////////////////////////////Bloc cours//////////////////////////////////////////////////////
+    int jour = 1;
+    if(jour == 1){//lundi
+        int blocx = 100;
+        int blocy = 95;
+        int bloch = 100;
+        int blocw = 210; 
+        Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
+    }
+    if(jour == 2){//mardi
+        int blocx = 330;
+        int blocy = 95;
+        int bloch = 100;
+        int blocw = 210; 
+        Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
+    }
+    if(jour == 3){//mercredi
+        int blocx = 560;
+        int blocy = 95;
+        int bloch = 100;
+        int blocw = 210; 
+        Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
+    }
+    if(jour == 4){//jeudi
+        int blocx = 790;
+        int blocy = 95;
+        int bloch = 100;
+        int blocw = 210; 
+        Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
+    }
+    if(jour == 5){//vendredi
+        int blocx = 1020;
+        int blocy = 95;
+        int bloch = 100;
+        int blocw = 210; 
+        Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
+    }
+    if(jour == 6){ //samedi
+        int blocx = 1250;
+        int blocy = 95;
+        int bloch = 100;
+        int blocw = 210; 
+        Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
+    }
+    
+    
+    //Cours cours = new Cours(g);
+    
+    /*int heure = 0;
+    int blocx = 100;
+    int blocy = 95;
+    int bloch = 100;
+    int blocw = 210; 
+    
+    String cours = "Anglais";
+    String enseignant = "M. MELLANG";
+    String promo = "Ing3";
+    String groupe = "Gr06";
+    
+    g.setColor(Color.RED);
+    g.fillRect(blocx, blocy, blocw, bloch);
+    g.setColor(Color.BLACK);
+    g.drawString(cours, blocx + 75, blocy + 25);
+    g.drawString(enseignant, blocx + 65, blocy + 45);
+    g.drawString(promo + groupe, blocx + 75, blocy + 75);
+    
+    blocy = blocy + bloch + 15;
+    g.setColor(Color.RED);
+    g.drawRect(blocx, blocy, blocw, bloch);
+    
+    blocy = blocy + bloch + 15;
+    g.setColor(Color.RED);
+    g.drawRect(blocx, blocy, blocw, bloch);*/
   }   
 }
