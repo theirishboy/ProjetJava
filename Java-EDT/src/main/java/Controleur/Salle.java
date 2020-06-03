@@ -15,7 +15,7 @@ public class Salle {
     int Capacite;
     int ID_Site;
     
-    public void Salle(int ID, String nom, int Capacite, int ID_Site)
+    public  Salle(int ID, String nom, int Capacite, int ID_Site)
     {
         this.ID = ID;
         this.nom = nom;

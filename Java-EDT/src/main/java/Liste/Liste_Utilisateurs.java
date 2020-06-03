@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Liste_Utilisateurs {
      ArrayList<Utilisateur> LesUtilisateurs;
-     public void Liste_Utilisateur()
+     public  Liste_Utilisateurs()
     {
          LesUtilisateurs = new ArrayList<Utilisateur>();
     }

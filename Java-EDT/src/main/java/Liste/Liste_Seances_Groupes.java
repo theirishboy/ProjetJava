@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Liste_Seances_Groupes {
     ArrayList<Seance_Groupes> LesSeance_Groupes;
-     public void Liste_Seances_Groupes()
+     public  Liste_Seances_Groupes()
     {
          LesSeance_Groupes = new ArrayList<Seance_Groupes>();
     }

@@ -15,7 +15,7 @@ public class Seance_Groupes {
     int ID_Seance;
    private ArrayList<Integer> ID_Groupes;
     
-    public void Seance_Groupes(int ID_Seance, int ID_Groupe)
+    public Seance_Groupes(int ID_Seance, int ID_Groupe)
     {
         this.ID_Seance = ID_Seance;
     }

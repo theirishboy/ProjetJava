@@ -3,6 +3,9 @@
  * and open the template in the editor.
  */
 package BDD;
+import Controleur.Enseignant;
+import Controleur.Etudiant;
+import Controleur.Utilisateur;
 
 /*
  * 
@@ -17,7 +20,7 @@ import java.util.ArrayList;
  * 
  * @author segado
  */
-public class Connexion {
+public class ConnexionBDD {
 
     /**
      * Attributs prives : connexion JDBC, statement, ordre requete et resultat
@@ -49,7 +52,7 @@ public class Connexion {
      * @throws java.sql.SQLException
      * @throws java.lang.ClassNotFoundException
      */
-    public Connexion(String nameDatabase, String loginDatabase, String passwordDatabase) throws SQLException, ClassNotFoundException{
+    public ConnexionBDD(String nameDatabase, String loginDatabase, String passwordDatabase) throws SQLException, ClassNotFoundException{
         // chargement driver "com.mysql.jdbc.Driver"
                             System.out.println("BONJOUR");
 
@@ -105,11 +108,12 @@ public class Connexion {
      * @return
      * @throws java.sql.SQLException
      */
-    public ArrayList remplirChampsTable(String table) throws SQLException {
+    public Utilisateur Connexionutilisateur(String Email,String motdepasse) throws SQLException {
         // récupération de l'ordre de la requete
-        rset = stmt.executeQuery("select * from " + table);
 
+        rset = stmt.executeQuery("select * from utilisateur where email=\""+ Email+ "\" AND PASSWD= \""+motdepasse+"\" " );
         // récupération du résultat de l'ordre
+
         rsetMeta = rset.getMetaData();
 
         // calcul du nombre de colonnes du resultat
@@ -118,22 +122,76 @@ public class Connexion {
         // creation d'une ArrayList de String
         ArrayList<String> liste;
         liste = new ArrayList<>();
-        String champs = "";
-        // Ajouter tous les champs du resultat dans l'ArrayList
-        for (int i = 0; i < nbColonne; i++) {
-            champs = champs + " " + rsetMeta.getColumnLabel(i + 1);
-            
-            
+
+
+        // creation d'une ArrayList de String
+            String champs = null;
+
+        // tant qu'il reste une ligne 
+        
+        rset.next();
+        // tant qu'il reste une ligne
+                   // String champs = null;
+                            System.out.println("ici");
+
+        String IDs = rset.getString(1);
+             int ID;
+        ID = Integer.parseInt(IDs);
+                
+        String Nom = rset.getString(4);
+
+        String Prenom = rset.getString(5);
+
+        int Droit = rset.getInt(6);
+        
+        System.out.println("droit = " + Droit);
+        if(Droit == 1 || Droit == 2)
+        {
+                 Utilisateur nouveauUtilisateur = new Utilisateur(ID,Email,motdepasse,Nom,Prenom,Droit);
+                 return nouveauUtilisateur;
+   
+        }
+        else if(Droit == 4)
+        {
+                rset = stmt.executeQuery("select * from Etudiant where ID_Utilisateur=" + ID);
+               rsetMeta = rset.getMetaData();
+                       rset.next();
+
+             //  System.out.println("Je suis etudiant"+ rset.getInt(1) + rset.getInt(3)+rset.getInt(2));
+                int ID_Groupe =  rset.getInt(3) ;
+                int Numero =  rset.getInt(2) ;
+
+               Etudiant nouveauEtudiant = new Etudiant(ID,ID_Groupe,Numero,Email,motdepasse,Nom,Prenom,Droit);
+               return nouveauEtudiant;
+
+
+        }
+        else if(Droit == 3)
+        {
+                rset = stmt.executeQuery("select * from Enseignant where ID_Utilisateur=" + ID);
+               rsetMeta = rset.getMetaData();
+                       rset.next();
+
+
+                Enseignant nouveauEnseignant = new Enseignant(ID,Email,Nom,Prenom,motdepasse,Droit);
+                 System.out.println("Je suis enseigannt");
+                 return nouveauEnseignant;
+
+        }
+        else
+        {
+                    return null;
+
         }
 
+    
+
         // ajouter un "\n" à la ligne des champs
-        champs = champs + "\n";
 
         // ajouter les champs de la ligne dans l'ArrayList
-        liste.add(champs);
 
         // Retourner l'ArrayList
-        return liste;
+       
     }
 
     /**

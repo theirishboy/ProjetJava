@@ -14,7 +14,7 @@ public class Groupe {
     String nom;
     int ID_Promotion;
     
-    public void Groupe(int ID, String nom, int ID_Promotion)
+    public Groupe(int ID, String nom, int ID_Promotion)
     {
         this.ID = ID;
         this.nom = nom;

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Liste_Etudiants {
     ArrayList<Etudiant> LesEtudiants;
-     public void Liste_Etudiants()
+     public Liste_Etudiants()
     {
          LesEtudiants = new ArrayList<Etudiant>();
     }

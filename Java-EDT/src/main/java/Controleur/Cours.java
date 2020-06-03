@@ -13,7 +13,7 @@ public class Cours {
     int ID;
     String nom;
     
-    public void Cours(int ID, String nom)
+    public Cours(int ID, String nom)
     {
         this.ID = ID;
         this.nom = nom;

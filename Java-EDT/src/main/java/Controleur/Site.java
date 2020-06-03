@@ -13,7 +13,7 @@ public class Site {
     int ID;
     String nom;
     
-    public void Site(int ID, String nom)
+    public  Site(int ID, String nom)
     {
         this.ID = ID;
         this.nom = nom;

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Liste_Promotions {
     ArrayList<Promotion> LesPromotions;
-     public void Liste_Promotions()
+     public  Liste_Promotions()
     {
          LesPromotions = new ArrayList<Promotion>();
     }
