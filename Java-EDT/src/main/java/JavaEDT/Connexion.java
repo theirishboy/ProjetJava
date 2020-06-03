@@ -5,6 +5,7 @@
  */
 package JavaEDT;
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class Connexion extends JFrame{
@@ -12,7 +13,23 @@ public class Connexion extends JFrame{
     private JLabel logo, login,connect, Labelemail, Labelmdp = new JLabel();
     private JTextField email, mdp;
     private JPanel panellogin = new JPanel();
+    private JDialog hello = new JDialog();
     
+    public String getEmail(){
+        String getemail = email.getText();
+	return getemail;
+    }
+    
+    public String getMdp(){
+        String getmdp = mdp.getText();
+	return getmdp;
+    }
+    
+    public void connexion(String email, String mdp){
+        System.out.println("email : " + email);
+        System.out.println("Mot de passe : " + mdp);
+    }
+            
     public Connexion(){
         this.setTitle("Connexion");
 
@@ -94,8 +111,8 @@ public class Connexion extends JFrame{
         JPanel panelbas = new JPanel();
         panelbas.setBackground(couleur);
         panelbas.setPreferredSize(new Dimension(220, 100));
-        JButton okBouton = new JButton("Connexion");
-        panelbas.add(okBouton);
+        JButton connexion = new JButton("Connexion");
+        panelbas.add(connexion);
         
         container.setBackground(couleur);
         container.add(paneltop, BorderLayout.NORTH);
@@ -104,6 +121,15 @@ public class Connexion extends JFrame{
         this.setContentPane(container);
         this.setVisible(true);
         
+        connexion.addActionListener(new ActionListener(){
+        public void actionPerformed(ActionEvent arg0) {
+        connexion(getEmail(), getMdp());
+        //connexion.removeAll();
+        //setVisible(false);
+        //Panneau fenetreEDT = new Panneau();
+        //Fenetre EDT = new Fenetre(fenetreEDT);
+        }
+        });
         
     }    
 }
