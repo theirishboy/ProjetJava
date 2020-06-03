@@ -12,7 +12,7 @@ package Controleur;
 public class Type_Cours {
     int ID;
     String nom;
-    public void Type_Cours(int ID,String nom)
+    public  Type_Cours(int ID,String nom)
     {
         this.ID = ID;
         this.nom = nom;

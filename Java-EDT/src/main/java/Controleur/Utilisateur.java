@@ -17,7 +17,7 @@ public class Utilisateur {
      String Prenom;
      int Droit;
      
-     public void Utilisateur(int ID,String Email,String Password, String Nom, String Prenom,int Droit)
+     public Utilisateur(int ID,String Email,String Password, String Nom, String Prenom,int Droit)
      {
          this.ID = ID;
          this.Email = Email;
@@ -27,6 +27,7 @@ public class Utilisateur {
          this.Droit = Droit;
      }
 
+  
      public int getID()
     {
         return this.ID;

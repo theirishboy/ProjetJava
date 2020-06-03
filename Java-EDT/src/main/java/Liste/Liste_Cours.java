@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Liste_Cours {
     private ArrayList<Cours> LesCours ;
     
-    public void Liste_Cours()
+    public  Liste_Cours()
     {
         LesCours = new ArrayList<Cours>();
     }

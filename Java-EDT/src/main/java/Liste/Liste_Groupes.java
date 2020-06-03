@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Liste_Groupes {
     
    ArrayList<Groupe> LesGroupes;
-     public void Liste_Groupes()
+     public Liste_Groupes()
     {
          LesGroupes = new ArrayList<Groupe>();
     }

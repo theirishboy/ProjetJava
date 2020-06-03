@@ -5,18 +5,22 @@
  */
 package Controleur;
 
+import Liste.Liste_Cours;
+import java.util.ArrayList;
+
 /**
  *
  * @author gabri
  */
 public class Enseignant extends Utilisateur {
     
-    int ID_Cours;
-    public void Enseignant(int ID_Utilisateur, int ID_Groupe, String Email, String nom, String Prenom)
+     private Liste_Cours mescours;
+    public  Enseignant(int ID_Utilisateur, String Email, String Nom, String Prenom,String PASSWD,int Droit)
     {
+        super(ID_Utilisateur,Email,PASSWD,Nom,Prenom,Droit);
         this.ID = ID_Utilisateur;
         this.Email = Email;
-        this.Nom = nom;
+        this.Nom = Nom;
         this.Prenom = Prenom;
         this.Droit = 3;
     }

@@ -13,13 +13,19 @@ public class Etudiant extends Utilisateur {
 
     int numéro;
     int ID_Groupe;
-    public void Etudiant(int ID_Utilisateur, int ID_Groupe, String Email, String nom, String Prenom)
+
+    public Etudiant(int ID_Utilisateur, int ID_Groupe,int Numéro, String Email,String PASSWD, String Nom, String Prenom, int Droit)
     {
+       super(ID_Utilisateur,Email,PASSWD,Nom,Prenom,Droit);
+
+
+        this.ID_Groupe = ID_Groupe;
         this.ID = ID_Utilisateur;
         this.Email = Email;
-        this.Nom = nom;
+        this.Nom = Nom;
         this.Prenom = Prenom;
         this.Droit = 4;
+        this.numéro = Numéro;
 
     }
  

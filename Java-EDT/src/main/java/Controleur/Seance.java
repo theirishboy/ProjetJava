@@ -20,7 +20,7 @@ public class Seance {
     int ID_Cours;
     int ID_Type;
     
-    public void Seance(int ID, int Semaine, String date, String HeureDebut, String HeureFin, int Etat, int ID_Cours,int ID_Type)
+    public  Seance(int ID, int Semaine, String date, String HeureDebut, String HeureFin, int Etat, int ID_Cours,int ID_Type)
     {
         this.ID = ID;
         this.Semaine = Semaine;

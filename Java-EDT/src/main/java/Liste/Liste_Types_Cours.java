@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Liste_Types_Cours {
      ArrayList<Type_Cours> LesTypes_Cours;
-     public void Liste_Types_Cours()
+     public  Liste_Types_Cours()
     {
          LesTypes_Cours = new ArrayList<Type_Cours>();
     }

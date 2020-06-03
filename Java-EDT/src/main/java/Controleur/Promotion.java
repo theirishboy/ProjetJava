@@ -13,7 +13,7 @@ public class Promotion {
     int ID;
     int Nom;
     
-    public void Promotion(int ID,int nom)
+    public  Promotion(int ID,int nom)
     {
         this.ID = ID;
         this.Nom = nom;

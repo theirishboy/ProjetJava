@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Liste_Seances {
     ArrayList<Seance> LesSeances;
-     public void Liste_Seances()
+     public  Liste_Seances()
     {
          LesSeances = new ArrayList<Seance>();
     }

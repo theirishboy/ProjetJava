@@ -16,7 +16,7 @@ public class Seance_Salles {
     private ArrayList<Integer> ID_Seances;
     int ID_Salle;
 
-    public void Seance_Salles(int ID_Salle) {
+    public Seance_Salles(int ID_Salle) {
         this.ID_Salle = ID_Salle;
     }
 

@@ -7,6 +7,10 @@ package JavaEDT;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import BDD.ConnexionBDD;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Connexion extends JFrame{
     Color couleur = new Color(196, 196, 196);
@@ -14,7 +18,7 @@ public class Connexion extends JFrame{
     private JTextField email, mdp;
     private JPanel panellogin = new JPanel();
     private JDialog hello = new JDialog();
-    
+    private ConnexionBDD maconnexion;
     public String getEmail(){
         String getemail = email.getText();
 	return getemail;
@@ -28,9 +32,11 @@ public class Connexion extends JFrame{
     public void connexion(String email, String mdp){
         System.out.println("email : " + email);
         System.out.println("Mot de passe : " + mdp);
+        
     }
             
-    public Connexion(){
+    public Connexion() throws SQLException, ClassNotFoundException{
+        this.maconnexion = new ConnexionBDD("edt", "root", "");
         this.setTitle("Connexion");
 
         // Mettre en plein écran automatiquement
@@ -123,12 +129,18 @@ public class Connexion extends JFrame{
         
         connexion.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent arg0) {
-        connexion(getEmail(), getMdp());
-        //connexion.removeAll();
-        //setVisible(false);
-        //Panneau fenetreEDT = new Panneau();
-        //Fenetre EDT = new Fenetre(fenetreEDT);
+            try {
+                maconnexion.Connexionutilisateur(getEmail(), getMdp());
+                
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        //connexion.removeAll();
+                //setVisible(false);
+                //Panneau fenetreEDT = new Panneau();
+                //Fenetre EDT = new Fenetre(fenetreEDT);
         });
         
     }    
