@@ -4,8 +4,14 @@
  * and open the template in the editor.
  */
 package JavaEDT;
+
+import BDD.ConnexionBDD;
+import Controleur.Utilisateur;
+import Liste.Liste_Cours;
+import Liste.Liste_Seances;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 import javax.swing.*;
 
 public class Fenetre extends JFrame {
@@ -23,6 +29,12 @@ public class Fenetre extends JFrame {
   //Ces deux paramètres vont contenir le tableau de BoutonSemaine et le nombre de la semaine sur laquelle on appuie
   private BoutonSemaine[] semaine = new BoutonSemaine[53];
   private int nombre = 1;
+<<<<<<< HEAD
+
+   
+
+=======
+>>>>>>> master
   //Classe MyCationListener qui va décider de l'action lorsque l'on appuie sur le bouton
   //Cette classe reçoit en paramètre le numéro de semaine
   private final class MyActionListener implements ActionListener {
@@ -39,12 +51,20 @@ public class Fenetre extends JFrame {
         }
     }
   
+<<<<<<< HEAD
+  public Fenetre(JPanel pan, Utilisateur utilisateurco) throws SQLException{
+        int statut = utilisateurco.getDroit();
+        ConnexionBDD maconnexion = null;
+        //String nom = name;
+        int SemaineChoisi = 1;
+=======
   public Fenetre(JPanel pan, String name){
         int statut = 3;
+>>>>>>> master
         this.panel = pan;
         
         this.setTitle("Mon emploi du temps");
-
+        Liste_Seances Lescours;
         // Mettre en plein écran automatiquement
         this.pack();
         this.setDefaultLookAndFeelDecorated(true);
@@ -111,7 +131,11 @@ public class Fenetre extends JFrame {
         }
         
         ////Statut enseignant////
+
         if(statut == 3){
+            
+            Lescours = maconnexion.Mescours(utilisateurco,SemaineChoisi);
+
             top.add(combo1, BorderLayout.WEST);
             combo1.addItem("Mon emploi du temps grille");
             combo1.addItem("Mon emploi du temps ligne");
@@ -123,6 +147,9 @@ public class Fenetre extends JFrame {
         
         ////Statut étudiant////
         if(statut == 4){
+            
+            Lescours = maconnexion.Mescours(utilisateurco,SemaineChoisi);
+
             top.add(combo1, BorderLayout.WEST);
             combo1.addItem("Mon emploi du temps grille");
             combo1.addItem("Mon emploi du temps ligne");
