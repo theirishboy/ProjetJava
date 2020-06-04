@@ -11,15 +11,14 @@ import javax.swing.JFrame;
 public class Essai1 {
     public static void main(String[] args) throws SQLException, ClassNotFoundException{
         String nom = "Marine";
-  // Panneau fenetreEDT = new Panneau();
+    //Panneau fenetreEDT = new Panneau();
     //Fenetre fenetre = new Fenetre(fenetreEDT,nom);
     //Recapitulatif fenetreRecap = new Recapitulatif();    
    // Fenetre fenetre = new Fenetre(fenetreRecap);
     
-   Connexion fenetreConnexion = new Connexion();
+   //Connexion fenetreConnexion = new Connexion();
     //EDT fenetreEDT = new EDT();
-    
-    
+    FonctionsAdmin admin = new FonctionsAdmin(1);
     
   }       
 }

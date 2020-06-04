@@ -174,7 +174,8 @@ public class ConnexionBDD {
             return null; 
  
         } 
-    } 
+    }
+    
     public Liste_Seances MescoursEtudiant(Etudiant etudiant, int Semaine) throws SQLException 
     { 
         Liste_Seances messeances = new Liste_Seances();
