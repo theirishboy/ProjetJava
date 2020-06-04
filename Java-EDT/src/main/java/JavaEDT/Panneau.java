@@ -5,8 +5,6 @@ import javax.swing.*;
  
 public class Panneau extends JPanel { 
    public void paintComponent(Graphics g){
-    
-
     //Colonne pour l'emploi du temps
     Color couleur1 = new Color(61, 175, 175);
     Color couleur2 = new Color(195, 195, 195); 
@@ -15,7 +13,7 @@ public class Panneau extends JPanel {
     g.fillRect(0, 0, this.getWidth(), this.getHeight());
     
     int x=100;
-    int y=100;   
+    int y=80;   
     for (int i=0; i<6; i++)
     {
         int largeur = 210;
@@ -31,7 +29,7 @@ public class Panneau extends JPanel {
     }
     
     x=100;
-    y=100;
+    y=75;
     
     //Les jours de la semaine
     Font font = new Font("Courier", Font.BOLD, 25);
@@ -56,7 +54,7 @@ public class Panneau extends JPanel {
     Color couleur4 = new Color(71, 71, 71);
     g.setFont(hor1);
     g.setColor(couleur4); 
-    int j = (this.getHeight()+y)/15;
+    int j = (this.getHeight()-45)/13;
     System.out.println(this.getHeight());
     System.out.println(j);
     g.drawString("09:00", x/3, j*2);
@@ -89,26 +87,7 @@ public class Panneau extends JPanel {
     g.drawString("19:30", x/3+10, j*12+32);
     g.drawString("20:30", x/3+10, j*13+32);
     
-    //Barre des semaines
-    Color couleur = new Color(96, 96, 96);
-    g.setColor(couleur);
-    g.setFont(hor1);
-    int carrex = 0;
-    int l = 35;
-    for (int i=35; i<=52; i++)
-    {
-        g.drawRect(carrex, 0, l, l);
-        g.drawString(""+i, carrex+8, 22);
-        carrex=carrex+l;
-    }
-    for (int i=1; i<=25; i++)
-    {
-        g.drawRect(carrex, 0, l, l);
-        g.drawString(""+i, carrex+8, 22);
-        carrex=carrex+l;    
-    }
-    
-    g.drawString("Septembre", 60, 50);
+    /*g.drawString("Septembre", 60, 50);
     g.drawString("Octobre", 210, 50);
     g.drawString("Novembre", 355, 50);
     g.drawString("Décembre", 515, 50);
@@ -117,80 +96,57 @@ public class Panneau extends JPanel {
     g.drawString("Mars", 955, 50);
     g.drawString("Avril", 1125, 50);
     g.drawString("Mai", 1285, 50);
-    g.drawString("Juin", 1420, 50);
+    g.drawString("Juin", 1420, 50);*/
     
     //////////////////////////////////////////////////////Bloc cours//////////////////////////////////////////////////////
+    g.setFont(hor1);
+    g.setColor(couleur4);
+    
     int jour = 1;
     if(jour == 1){//lundi
         int blocx = 100;
-        int blocy = 95;
-        int bloch = 100;
+        int blocy = 90;
+        int bloch = 97;
         int blocw = 210; 
         Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
     }
     if(jour == 2){//mardi
         int blocx = 330;
-        int blocy = 95;
-        int bloch = 100;
+        int blocy = 90;
+        int bloch = 97;
         int blocw = 210; 
         Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
     }
     if(jour == 3){//mercredi
         int blocx = 560;
-        int blocy = 95;
-        int bloch = 100;
+        int blocy = 90;
+        int bloch = 97;
         int blocw = 210; 
         Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
     }
     if(jour == 4){//jeudi
         int blocx = 790;
-        int blocy = 95;
-        int bloch = 100;
+        int blocy = 90;
+        int bloch = 97;
         int blocw = 210; 
         Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
     }
     if(jour == 5){//vendredi
         int blocx = 1020;
-        int blocy = 95;
-        int bloch = 100;
+        int blocy = 90;
+        int bloch = 97;
         int blocw = 210; 
         Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
     }
     if(jour == 6){ //samedi
         int blocx = 1250;
-        int blocy = 95;
-        int bloch = 100;
+        int blocy = 90;
+        int bloch = 97;
         int blocw = 210; 
         Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
     }
-    
-    
+
     //Cours cours = new Cours(g);
     
-    /*int heure = 0;
-    int blocx = 100;
-    int blocy = 95;
-    int bloch = 100;
-    int blocw = 210; 
-    
-    String cours = "Anglais";
-    String enseignant = "M. MELLANG";
-    String promo = "Ing3";
-    String groupe = "Gr06";
-    
-    g.setColor(Color.RED);
-    g.fillRect(blocx, blocy, blocw, bloch);
-    g.setColor(Color.BLACK);
-    g.drawString(cours, blocx + 75, blocy + 25);
-    g.drawString(enseignant, blocx + 65, blocy + 45);
-    g.drawString(promo + groupe, blocx + 75, blocy + 75);
-    
-    blocy = blocy + bloch + 15;
-    g.setColor(Color.RED);
-    g.drawRect(blocx, blocy, blocw, bloch);
-    
-    blocy = blocy + bloch + 15;
-    g.setColor(Color.RED);
-    g.drawRect(blocx, blocy, blocw, bloch);*/
   }   
 }

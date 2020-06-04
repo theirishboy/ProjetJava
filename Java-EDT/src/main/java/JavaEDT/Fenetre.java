@@ -18,7 +18,25 @@ public class Fenetre extends JFrame {
   private JComboBox combo1 = new JComboBox();
   private JComboBox combo2 = new JComboBox();
   private JButton bouton1 = new JButton();
-  
+  //Ces deux paramètres vont contenir le tableau de BoutonSemaine et le nombre de la semaine sur laquelle on appuie
+  private BoutonSemaine[] semaine = new BoutonSemaine[53];
+  private int nombre = 1;
+
+  //Classe MyCationListener qui va décider de l'action lorsque l'on appuie sur le bouton
+  //Cette classe reçoit en paramètre le numéro de semaine
+  private final class MyActionListener implements ActionListener {
+        private final int index;
+        private MyActionListener(int nb) {
+            index = nb;
+        }
+        //Lorsqu'on appuie sur un bouton, on donne à l'attribut nombre la valeur de la semaine
+        public void actionPerformed(ActionEvent theActionEvent) {
+            nombre = index;
+            //Ici test qui prouve que nombre est bien égale à la valeur de la case appuyée
+            System.out.println(index);
+            System.out.println("Valeur Retournée: "+ nombre);
+        }
+    }
   
   public Fenetre(JPanel pan, String name){
         int statut = 3;
@@ -39,9 +57,31 @@ public class Fenetre extends JFrame {
         container.setBackground(Color.ORANGE);
         container.setLayout(new BorderLayout());
         container.add(pan, BorderLayout.CENTER);
+        
+        JPanel ZoneBoutons = new JPanel();
+        ZoneBoutons.setBackground(couleur);
+        ZoneBoutons.setPreferredSize(new Dimension(1500, 35));
+        //On remplit le tableau de BoutonSemaine
+        for(Integer i = 1; i <= 52; ++i)
+        {
+            //On converti le i en String (d'où l'utilisation d'un Integer)
+            String bouton = i.toString();
+            semaine[i] = new BoutonSemaine(bouton);
+            //Les boutons se décalent de 35 pixels vers la droite à chaque boucle
+            semaine[i].setBounds(35*i, 35, 35, 35);
+            //On ajoute dans le JPanel
+            ZoneBoutons.add(semaine[i]);
+        }
+
+        //Pour tous les boutons, on leur donne comme action la MyActionListener qui sera donc activée lorsque l'on cliquera sur un bouton
+        for (int i = 1; i <= 52; i++) 
+        {
+            semaine[i].addActionListener(new MyActionListener(i));
+        }
+
         JPanel top = new JPanel();
         top.setBackground(couleur);
-        top.setPreferredSize(new Dimension(this.getWidth(), 35));
+        top.setPreferredSize(new Dimension(this.getWidth(), 75));
         
         ////Statut administrateur////
         if(statut == 1){
@@ -94,7 +134,7 @@ public class Fenetre extends JFrame {
             top.add(bouton1, BorderLayout.EAST);
             
         }
-        
+        top.add(ZoneBoutons, BorderLayout.SOUTH);
         container.add(top, BorderLayout.NORTH);
         this.setContentPane(container);
         this.setVisible(true);
