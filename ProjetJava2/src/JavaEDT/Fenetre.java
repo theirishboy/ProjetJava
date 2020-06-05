@@ -29,12 +29,8 @@ public class Fenetre extends JFrame {
   //Ces deux paramètres vont contenir le tableau de BoutonSemaine et le nombre de la semaine sur laquelle on appuie
   private BoutonSemaine[] semaine = new BoutonSemaine[53];
   private int nombre = 1;
-<<<<<<< HEAD
 
-   
 
-=======
->>>>>>> master
   //Classe MyCationListener qui va décider de l'action lorsque l'on appuie sur le bouton
   //Cette classe reçoit en paramètre le numéro de semaine
   private final class MyActionListener implements ActionListener {
@@ -51,16 +47,15 @@ public class Fenetre extends JFrame {
         }
     }
   
-<<<<<<< HEAD
   public Fenetre(JPanel pan, Utilisateur utilisateurco) throws SQLException{
         int statut = utilisateurco.getDroit();
         ConnexionBDD maconnexion = null;
         //String nom = name;
         int SemaineChoisi = 1;
-=======
+  }  
+  
   public Fenetre(JPanel pan, String name){
         int statut = 3;
->>>>>>> master
         this.panel = pan;
         
         this.setTitle("Mon emploi du temps");
@@ -134,7 +129,7 @@ public class Fenetre extends JFrame {
 
         if(statut == 3){
             
-            Lescours = maconnexion.Mescours(utilisateurco,SemaineChoisi);
+            //Lescours = maconnexion.Mescours(utilisateurco,SemaineChoisi);
 
             top.add(combo1, BorderLayout.WEST);
             combo1.addItem("Mon emploi du temps grille");
@@ -148,7 +143,7 @@ public class Fenetre extends JFrame {
         ////Statut étudiant////
         if(statut == 4){
             
-            Lescours = maconnexion.Mescours(utilisateurco,SemaineChoisi);
+            //Lescours = maconnexion.Mescours(utilisateurco,SemaineChoisi);
 
             top.add(combo1, BorderLayout.WEST);
             combo1.addItem("Mon emploi du temps grille");
