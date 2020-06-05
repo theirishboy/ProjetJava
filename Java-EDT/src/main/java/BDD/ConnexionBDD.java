@@ -17,6 +17,8 @@ import Liste.Liste_Seances;
  */ 
 import java.sql.*; 
 import java.util.ArrayList; 
+import java.util.logging.Level;
+import java.util.logging.Logger;
  
 /** 
  * 
@@ -110,70 +112,76 @@ public class ConnexionBDD {
      * @return 
      * @throws java.sql.SQLException 
      */ 
-    public Utilisateur Connexionutilisateur(String Email, String motdepasse) throws SQLException { 
-        // récupération de l'ordre de la requete 
- 
-        rset = stmt.executeQuery("select * from utilisateur where email=\"" + Email + "\" AND PASSWD= \"" + motdepasse + "\" "); 
-        // récupération du résultat de l'ordre 
- 
-        rsetMeta = rset.getMetaData(); 
- 
-        // calcul du nombre de colonnes du resultat 
-        int nbColonne = rsetMeta.getColumnCount(); 
- 
-        // creation d'une ArrayList de String 
-        ArrayList<String> liste; 
-        liste = new ArrayList<>(); 
- 
-        // creation d'une ArrayList de String 
-        String champs = null; 
- 
-        // tant qu'il reste une ligne  
-        rset.next(); 
-        // tant qu'il reste une ligne 
-        // String champs = null; 
-        System.out.println("ici"); 
- 
-        String IDs = rset.getString(1); 
-        int ID; 
-        ID = Integer.parseInt(IDs); 
- 
-        String Nom = rset.getString(4); 
- 
-        String Prenom = rset.getString(5); 
- 
-        int Droit = rset.getInt(6); 
- 
-        System.out.println("droit = " + Droit); 
-        if (Droit == 1 || Droit == 2) { 
-            Utilisateur nouveauUtilisateur = new Utilisateur(ID, Email, motdepasse, Nom, Prenom, Droit); 
-            return nouveauUtilisateur; 
- 
-        } else if (Droit == 4) { 
-            rset = stmt.executeQuery("select * from Etudiant where ID_Utilisateur=" + ID); 
-            rsetMeta = rset.getMetaData(); 
-            rset.next(); 
- 
-            //  System.out.println("Je suis etudiant"+ rset.getInt(1) + rset.getInt(3)+rset.getInt(2)); 
-            int ID_Groupe = rset.getInt(3); 
-            int Numero = rset.getInt(2); 
- 
-            Etudiant nouveauEtudiant = new Etudiant(ID, ID_Groupe, Numero, Email, motdepasse, Nom, Prenom, Droit); 
-            return nouveauEtudiant; 
- 
-        } else if (Droit == 3) { 
-            rset = stmt.executeQuery("select * from Enseignant where ID_Utilisateur=" + ID); 
-            rsetMeta = rset.getMetaData(); 
-            rset.next(); 
- 
-            Enseignant nouveauEnseignant = new Enseignant(ID, Email, Nom, Prenom, motdepasse, Droit); 
-            System.out.println("Je suis enseigannt"); 
-            return nouveauEnseignant; 
- 
-        } else { 
-            return null; 
- 
-        } 
+    public Utilisateur Connexionutilisateur(String Email, String motdepasse) { 
+        try {
+            // récupération de l'ordre de la requete
+            
+            rset = stmt.executeQuery("select * from utilisateur where email=\"" + Email + "\" AND PASSWD= \"" + motdepasse + "\" ");
+            // récupération du résultat de l'ordre
+            
+            rsetMeta = rset.getMetaData();
+            
+            // calcul du nombre de colonnes du resultat
+            int nbColonne = rsetMeta.getColumnCount();
+            
+            // creation d'une ArrayList de String
+            ArrayList<String> liste;
+            liste = new ArrayList<>();
+            
+            // creation d'une ArrayList de String
+            String champs = null;
+            
+            // tant qu'il reste une ligne
+            rset.next();
+            // tant qu'il reste une ligne
+            // String champs = null;
+            System.out.println("ici");
+            
+            String IDs = rset.getString(1);
+            int ID;
+            ID = Integer.parseInt(IDs);
+            
+            String Nom = rset.getString(4);
+            
+            String Prenom = rset.getString(5);
+            
+            int Droit = rset.getInt(6);
+            
+            System.out.println("droit = " + Droit);
+            if (Droit == 1 || Droit == 2) {
+                Utilisateur nouveauUtilisateur = new Utilisateur(ID, Email, motdepasse, Nom, Prenom, Droit);
+                return nouveauUtilisateur;
+                
+            } else if (Droit == 4) {
+                rset = stmt.executeQuery("select * from Etudiant where ID_Utilisateur=" + ID);
+                rsetMeta = rset.getMetaData();
+                rset.next();
+                
+                //  System.out.println("Je suis etudiant"+ rset.getInt(1) + rset.getInt(3)+rset.getInt(2));
+                int ID_Groupe = rset.getInt(3);
+                int Numero = rset.getInt(2);
+                
+                Etudiant nouveauEtudiant = new Etudiant(ID, ID_Groupe, Numero, Email, motdepasse, Nom, Prenom, Droit);
+                return nouveauEtudiant;
+                
+            } else if (Droit == 3) {
+                rset = stmt.executeQuery("select * from Enseignant where ID_Utilisateur=" + ID);
+                rsetMeta = rset.getMetaData();
+                rset.next();
+                
+                Enseignant nouveauEnseignant = new Enseignant(ID, Email, Nom, Prenom, motdepasse, Droit);
+                System.out.println("Je suis enseigannt");
+                return nouveauEnseignant;
+                
+            } else {
+                 
+            }
+        } catch (SQLException ex) {
+            System.out.println("OUII");
+            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                        return null;
+
     } 
     public Liste_Seances MescoursEtudiant(Etudiant etudiant, int Semaine) throws SQLException 
     { 

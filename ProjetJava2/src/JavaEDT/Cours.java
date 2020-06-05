@@ -20,16 +20,8 @@ public class Cours extends JPanel {
         g.setColor(Color.RED);
         g.fillRect(blocx, blocy, blocw, bloch);
         g.setColor(Color.BLACK);
-        g.drawString(cours, blocx + 75, blocy + 25);
-        g.drawString(enseignant, blocx + 65, blocy + 45);
-        g.drawString(promo + groupe, blocx + 75, blocy + 75);
-
-        blocy = blocy + bloch + 15;
-        g.setColor(Color.RED);
-        g.drawRect(blocx, blocy, blocw, bloch);
-
-        blocy = blocy + bloch + 15;
-        g.setColor(Color.RED);
-        g.drawRect(blocx, blocy, blocw, bloch);
+        g.drawString(cours, blocx + 65, blocy + 25);
+        g.drawString(enseignant, blocx + 60, blocy + 45);
+        g.drawString(promo + groupe, blocx + 65, blocy + 75);
    }   
 }

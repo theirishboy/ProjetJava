@@ -4,6 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
  
 public class Panneau extends JPanel { 
+    
    public void paintComponent(Graphics g){
     //Colonne pour l'emploi du temps
     Color couleur1 = new Color(61, 175, 175);
@@ -16,15 +17,15 @@ public class Panneau extends JPanel {
     int y=80;   
     for (int i=0; i<6; i++)
     {
-        int largeur = 210;
+        int largeur = 190;
         int ecart=20;
 
         g.setColor(couleur1);
-        g.fillRect(x, y, largeur, this.getHeight());
+        g.fillRect(x, y, largeur, 535);
         x=x+largeur;
         
         g.setColor(couleur2);
-        g.drawRect(x, y, ecart, this.getHeight());
+        g.drawRect(x, y, ecart, 535);
         x=x+20;    
     }
     
@@ -37,55 +38,55 @@ public class Panneau extends JPanel {
     g.setFont(font);
     g.setColor(couleur3);
     //Lundi          
-    g.drawString("Lundi", x+75, y-10);
+    g.drawString("Lundi", x+65, y-10);
     //Mardi         
-    g.drawString("Mardi", x+305, y-10);
+    g.drawString("Mardi", x+270, y-10);
     //Mercredi        
-    g.drawString("Mercredi", x+515, y-10);
+    g.drawString("Mercredi", x+465, y-10);
     //Jeudi         
-    g.drawString("Jeudi", x+760, y-10);
+    g.drawString("Jeudi", x+695, y-10);
     //Vendredi         
-    g.drawString("Vendredi", x+970, y-10);
+    g.drawString("Vendredi", x+890, y-10);
     //Samedi          
-    g.drawString("Samedi", x+1210, y-10);
+    g.drawString("Samedi", x+1100, y-10);
     
     //Les horaires
     Font hor1 = new Font("Courier", Font.BOLD, 15);
     Color couleur4 = new Color(71, 71, 71);
     g.setFont(hor1);
     g.setColor(couleur4); 
-    int j = (this.getHeight()-45)/13;
+    int j = (620-45)/13;
     System.out.println(this.getHeight());
     System.out.println(j);
-    g.drawString("09:00", x/3, j*2);
-    g.drawString("10:00", x/3, j*3);
-    g.drawString("11:00", x/3, j*4);
-    g.drawString("12:00", x/3, j*5);
-    g.drawString("13:00", x/3, j*6);
-    g.drawString("14:00", x/3, j*7);
-    g.drawString("15:00", x/3, j*8);
-    g.drawString("16:00", x/3, j*9);
-    g.drawString("17:00", x/3, j*10);
-    g.drawString("18:00", x/3, j*11);
-    g.drawString("19:00", x/3, j*12);
-    g.drawString("20:00", x/3, j*13);
+    g.drawString("09:00", x/3, j*2+20);
+    g.drawString("10:00", x/3, j*3+20);
+    g.drawString("11:00", x/3, j*4+20);
+    g.drawString("12:00", x/3, j*5+20);
+    g.drawString("13:00", x/3, j*6+20);
+    g.drawString("14:00", x/3, j*7+20);
+    g.drawString("15:00", x/3, j*8+20);
+    g.drawString("16:00", x/3, j*9+20);
+    g.drawString("17:00", x/3, j*10+20);
+    g.drawString("18:00", x/3, j*11+20);
+    g.drawString("19:00", x/3, j*12+20);
+    g.drawString("20:00", x/3, j*13+20);
     
     //Les sous-heures
     Font hor2 = new Font("Courier", Font.BOLD, 10);
     g.setFont(hor2);
-    g.drawString("08:30", x/3+10, j+32);
-    g.drawString("09:30", x/3+10, j*2+32);
-    g.drawString("10:30", x/3+10, j*3+32);
-    g.drawString("11:30", x/3+10, j*4+32);
-    g.drawString("12:30", x/3+10, j*5+32);
-    g.drawString("13:30", x/3+10, j*6+32);
-    g.drawString("14:30", x/3+10, j*7+32);
-    g.drawString("15:30", x/3+10, j*8+32);
-    g.drawString("16:30", x/3+10, j*9+32);
-    g.drawString("17:30", x/3+10, j*10+32);
-    g.drawString("18:30", x/3+10, j*11+32);
-    g.drawString("19:30", x/3+10, j*12+32);
-    g.drawString("20:30", x/3+10, j*13+32);
+    g.drawString("08:30", x/3+10, j+40);
+    g.drawString("09:30", x/3+10, j*2+40);
+    g.drawString("10:30", x/3+10, j*3+40);
+    g.drawString("11:30", x/3+10, j*4+40);
+    g.drawString("12:30", x/3+10, j*5+40);
+    g.drawString("13:30", x/3+10, j*6+40);
+    g.drawString("14:30", x/3+10, j*7+40);
+    g.drawString("15:30", x/3+10, j*8+40);
+    g.drawString("16:30", x/3+10, j*9+40);
+    g.drawString("17:30", x/3+10, j*10+40);
+    g.drawString("18:30", x/3+10, j*11+40);
+    g.drawString("19:30", x/3+10, j*12+40);
+    g.drawString("20:30", x/3+10, j*13+40);
     
     /*g.drawString("Septembre", 60, 50);
     g.drawString("Octobre", 210, 50);
@@ -101,52 +102,138 @@ public class Panneau extends JPanel {
     //////////////////////////////////////////////////////Bloc cours//////////////////////////////////////////////////////
     g.setFont(hor1);
     g.setColor(couleur4);
+    int blocx;
+    int blocy;
     
-    int jour = 1;
-    if(jour == 1){//lundi
-        int blocx = 100;
-        int blocy = 90;
-        int bloch = 97;
-        int blocw = 210; 
-        Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
+    int jour = 4;
+    String heure = "8h30";
+    
+    blocx = placementJour(jour);
+    blocy = placementHeure(heure);
+    
+    Cours cours = new Cours(g, blocx, blocy, 97, 190);
+    
+  } 
+   
+   public int placementJour(int jour)
+   {
+       int blocx = 0;
+       if(jour == 1)
+       {//lundi
+        blocx = 100; 
     }
     if(jour == 2){//mardi
-        int blocx = 330;
-        int blocy = 90;
-        int bloch = 97;
-        int blocw = 210; 
-        Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
+        blocx = 310;
     }
     if(jour == 3){//mercredi
-        int blocx = 560;
-        int blocy = 90;
-        int bloch = 97;
-        int blocw = 210; 
-        Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
+        blocx = 520;
     }
     if(jour == 4){//jeudi
-        int blocx = 790;
-        int blocy = 90;
-        int bloch = 97;
-        int blocw = 210; 
-        Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
+        blocx = 730;
     }
     if(jour == 5){//vendredi
-        int blocx = 1020;
-        int blocy = 90;
-        int bloch = 97;
-        int blocw = 210; 
-        Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
+        blocx = 940;
     }
     if(jour == 6){ //samedi
-        int blocx = 1250;
-        int blocy = 90;
-        int bloch = 97;
-        int blocw = 210; 
-        Cours cours = new Cours(g, blocx, blocy, bloch, blocw);
+        blocx = placementJour(jour);
     }
-
-    //Cours cours = new Cours(g);
     
-  }   
+    return blocx;
+       
+   }
+   
+   public int placementHeure(String heure)
+   {   
+       int blocy = 0;
+       if(heure == "8h30")
+       {
+           blocy = ((620-45)/13)+36;
+       }
+       else if(heure == "9h")
+       {
+           blocy = ((620-45)/13)*2+20;
+       }
+       else if(heure == "9h30")
+       {
+           blocy = ((620-45)/13)*2+36;
+       }
+       else if(heure == "10h")
+       {
+           blocy = ((620-45)/13)*3+20;
+       }
+       else if(heure == "10h30")
+       {
+           blocy = ((620-45)/13)*3+36;
+       }
+       else if(heure == "11h")
+       {
+           blocy = ((620-45)/13)*4+20;
+       }
+       else if(heure == "11h30")
+       {
+           blocy = ((620-45)/13)*4+36;
+       }
+       else if(heure == "12h")
+       {
+           blocy = ((620-45)/13)*5+20;
+       }
+       else if(heure == "12h30")
+       {
+           blocy = ((620-45)/13)*5+36;
+       }
+       else if(heure == "13h")
+       {
+           blocy = ((620-45)/13)*6+20;
+       }
+       else if(heure == "13h30")
+       {
+           blocy = ((620-45)/13)*6+36;
+       }
+       else if(heure == "14h")
+       {
+           blocy = ((620-45)/13)*7+20;
+       }
+       else if(heure == "14h30")
+       {
+           blocy = ((620-45)/13)*7+36;
+       }
+       else if(heure == "15h")
+       {
+           blocy = ((620-45)/13)*8+20;
+       }
+       else if(heure == "15h30")
+       {
+           blocy = ((620-45)/13)*8+36;
+       }
+       else if(heure == "16h")
+       {
+           blocy = ((620-45)/13)*9+20;
+       }
+       else if(heure == "16h30")
+       {
+           blocy = ((620-45)/13)*9+36;
+       }
+       else if(heure == "17h")
+       {
+           blocy = ((620-45)/13)*10+20;
+       }
+       else if(heure == "17h30")
+       {
+           blocy = ((620-45)/13)*10+36;
+       }
+       else if(heure == "18h")
+       {
+           blocy = ((620-45)/13)*11+20;
+       }
+       else if(heure == "18h30")
+       {
+           blocy = ((620-45)/13)*11+36;
+       }
+       else if(heure == "19h")
+       {
+           blocy = ((620-45)/13)*12+20;
+       }
+       
+       return blocy;
+   }
 }
