@@ -7,13 +7,14 @@ package Liste;
 
 import Controleur.Seance;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author gabri
  */
 public class Liste_Seances {
-    ArrayList<Seance> LesSeances;
+    public ArrayList<Seance> LesSeances;
      public  Liste_Seances()
     {
          LesSeances = new ArrayList<Seance>();
@@ -22,5 +23,10 @@ public class Liste_Seances {
     {
         LesSeances.add(Seance);
     }
+
+    public int size() {
+           return LesSeances.size();
+    }
+   
     
 }

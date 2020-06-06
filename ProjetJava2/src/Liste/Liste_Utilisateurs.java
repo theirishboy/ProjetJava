@@ -13,13 +13,18 @@ import java.util.ArrayList;
  * @author gabri
  */
 public class Liste_Utilisateurs {
-     ArrayList<Utilisateur> LesUtilisateurs;
+     public                                                                                                                                                                                         ArrayList<Utilisateur> LesUtilisateurs;
      public  Liste_Utilisateurs()
-    {
-         LesUtilisateurs = new ArrayList<Utilisateur>();
+                                                                                    {
+                                                                                         LesUtilisateurs = new ArrayList<Utilisateur>();
     }
-    public void ajout(Utilisateur Utilisateur)
+    public void ajout(Utilisateur User)
     {
-        LesUtilisateurs.add(Utilisateur);
+        
+        LesUtilisateurs.add(User);
+    }
+    public int size()
+    {
+        return LesUtilisateurs.size();
     }
 }

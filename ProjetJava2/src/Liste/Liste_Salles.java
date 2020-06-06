@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author gabri
  */
 public class Liste_Salles {
-    ArrayList<Salle> LesSalles;
+    public ArrayList<Salle> LesSalles;
      public Liste_Salles()
     {
          LesSalles = new ArrayList<Salle>();
@@ -21,6 +21,10 @@ public class Liste_Salles {
     public void ajout(Salle Salle)
     {
         LesSalles.add(Salle);
+    }
+
+    public int size() {
+        return LesSalles.size();
     }
     
 }

@@ -12,29 +12,28 @@ import Liste.Liste_Seances;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class Fenetre extends JFrame {
-  
-  
+   int SemaineChoisi = 0;
+  ConnexionBDD maconnexion1;
   Color couleur = new Color(96, 96, 96);
   
   private JPanel container = new JPanel();
-  //private JPanel pan = new Panneau();
   //private JPanel pan = new Recapitulatif();
-  private JPanel panel;
+  private Panneau panel;
+
   private JComboBox combo1 = new JComboBox();
   private JComboBox combo2 = new JComboBox();
   private JButton bouton1 = new JButton();
   //Ces deux paramètres vont contenir le tableau de BoutonSemaine et le nombre de la semaine sur laquelle on appuie
   private BoutonSemaine[] semaine = new BoutonSemaine[53];
   private int nombre = 1;
-<<<<<<< HEAD
+  private test test1 = new test();
 
-   
-
-=======
->>>>>>> master
   //Classe MyCationListener qui va décider de l'action lorsque l'on appuie sur le bouton
   //Cette classe reçoit en paramètre le numéro de semaine
   private final class MyActionListener implements ActionListener {
@@ -51,20 +50,18 @@ public class Fenetre extends JFrame {
         }
     }
   
-<<<<<<< HEAD
-  public Fenetre(JPanel pan, Utilisateur utilisateurco) throws SQLException{
+  public Fenetre(Utilisateur utilisateurco, ConnexionBDD maconnexion) throws SQLException, ParseException, ClassNotFoundException{
+        Color couleur = new Color(96, 96, 96);
+
         int statut = utilisateurco.getDroit();
-        ConnexionBDD maconnexion = null;
+        this.maconnexion1 = maconnexion;
         //String nom = name;
         int SemaineChoisi = 1;
-=======
-  public Fenetre(JPanel pan, String name){
-        int statut = 3;
->>>>>>> master
-        this.panel = pan;
+  
+        this.panel = new Panneau();
         
         this.setTitle("Mon emploi du temps");
-        Liste_Seances Lescours;
+        Liste_Seances LesSeances = null;
         // Mettre en plein écran automatiquement
         this.pack();
         this.setDefaultLookAndFeelDecorated(true);
@@ -94,7 +91,6 @@ public class Fenetre extends JFrame {
         }
         container.setBackground(Color.ORANGE);
         container.setLayout(new BorderLayout());
-        container.add(pan);
         
         JPanel ZoneBoutons = new JPanel();
         ZoneBoutons.setBackground(couleur);
@@ -134,8 +130,8 @@ public class Fenetre extends JFrame {
 
         if(statut == 3){
             
-            Lescours = maconnexion.Mescours(utilisateurco,SemaineChoisi);
-
+           LesSeances = maconnexion.Mescours(utilisateurco,SemaineChoisi);
+           actualisercours(LesSeances);
             top.add(combo1, BorderLayout.WEST);
             combo1.addItem("Mon emploi du temps grille");
             combo1.addItem("Mon emploi du temps ligne");
@@ -147,8 +143,11 @@ public class Fenetre extends JFrame {
         
         ////Statut étudiant////
         if(statut == 4){
-            
-            Lescours = maconnexion.Mescours(utilisateurco,SemaineChoisi);
+
+           LesSeances = maconnexion.Mescours(utilisateurco,SemaineChoisi);
+                    System.out.println("OUIIIII");
+            if(LesSeances != null) System.out.println("ca va =0 " + LesSeances.size());
+            actualisercours(LesSeances);
 
             top.add(combo1, BorderLayout.WEST);
             combo1.addItem("Mon emploi du temps grille");
@@ -164,9 +163,27 @@ public class Fenetre extends JFrame {
         }
         top.add(ZoneBoutons);
         container.add(top, BorderLayout.NORTH);
+        container.add(panel);
+
+
         this.setContentPane(container);
         
         this.setVisible(true);
     
+  }
+  public void actualisercours(Liste_Seances mesSeances)
+  {
+       this.setVisible(true);
+
+        this.panel.removeAll();
+//        if(mesSeances != null) System.out.println(mesSeances.LesSeances.get(1).getID());
+        this.panel.setVar(mesSeances,this.maconnexion1);
+        this.panel.removeAll();
+        this.panel.repaint();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+        }
   }
 }

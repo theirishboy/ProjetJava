@@ -6,6 +6,7 @@
 package Controleur;
 import java.util.*;
 import java.text.*;
+import java.time.LocalTime;
 /**
  *
  * @author gabri
@@ -13,14 +14,15 @@ import java.text.*;
 public class Seance {
     int ID;
     int Semaine;
-    String Date;
-    String HeureDebut;
-    String HeureFin;
+    Date Date;
+    
+     Date HeureDebut; 
+     Date HeureFin ;
     int Etat; // Si 0 en cours de validation, si 1 validée, si 2 refusée
     int ID_Cours;
     int ID_Type;
     String Nom;
-    public  Seance(int ID, int Semaine, String date, String HeureDebut, String HeureFin, String Nom,int Etat, int ID_Cours,int ID_Type)
+    public  Seance(int ID, int Semaine, Date date, Date HeureDebut,Date HeureFin, String Nom,int Etat, int ID_Cours,int ID_Type)
     {
         this.ID = ID;
         this.Semaine = Semaine;
@@ -30,6 +32,7 @@ public class Seance {
         this.ID_Cours = ID_Cours;
         this.ID_Type = ID_Type;
         this.Nom = Nom;
+        this.Date = date;
     }
      public int getID()
     {
@@ -39,15 +42,15 @@ public class Seance {
      {
          return this.Semaine;
      }
-     public String getDate()
+     public Date getDate()
      {
          return this.Date;
      }  
-      public String getHeureDebut()
+      public Date getHeureDebut()
      {
          return this.HeureDebut;
      }    
-       public String getHeureFin()
+       public Date getHeureFin()
      {
          return this.HeureFin;
      }   

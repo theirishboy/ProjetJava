@@ -23,4 +23,10 @@ public class Liste_Cours {
     {
         LesCours.add(moncours);
     }
+    public int size()
+    {
+        return LesCours.size();
+    }
+    
+  
 }

@@ -11,6 +11,7 @@ import javax.swing.*;
 import BDD.ConnexionBDD;
 import Controleur.Utilisateur;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -131,22 +132,30 @@ public class Connexion extends JFrame {
         this.setContentPane(container);
         this.setVisible(true);
         String nom = "Marine";
-        Panneau fenetreEDT = new Panneau();
         connexion.addActionListener(new ActionListener() {
             int k = 0;
+            
 
             public void actionPerformed(ActionEvent arg0) {
                 Utilisateur cetuser = maconnexion.Connexionutilisateur(getEmail(), getMdp());
-                if (cetuser != null) {
+
+                if (cetuser != null ) {
                     dispose();
                     Fenetre fenetre = null;
+
                     try {
-                        fenetre = new Fenetre(fenetreEDT, cetuser);
+
+                        fenetre = new Fenetre(cetuser, maconnexion);
+                        fenetre.setVisible(true);
+
                     } catch (SQLException ex) {
+                        Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ClassNotFoundException ex) {
                         Logger.getLogger(Connexion.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    fenetre.setVisible(true);
                 }
 
                 //setVisible(false);

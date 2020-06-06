@@ -4,20 +4,30 @@
  */
 package BDD;
 
+import Controleur.Cours;
 import Controleur.Enseignant;
 import Controleur.Etudiant;
+import Controleur.Groupe;
+import Controleur.Salle;
 import Controleur.Seance;
+import Controleur.Site;
+import Controleur.Type_Cours;
 import Controleur.Utilisateur;
 import Liste.Liste_Cours;
 import Liste.Liste_Enseignants;
+import Liste.Liste_Groupes;
+import Liste.Liste_Salles;
 import Liste.Liste_Seances;
 import Liste.Liste_Utilisateurs;
+import static java.lang.String.format;
 
 /* 
  *  
  * Librairies importées 
  */
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,8 +52,9 @@ public class ConnexionBDD {
     private ResultSet rset3;
 
     private ResultSetMetaData rsetMeta;
-    /**
 
+    /**
+     *
      */
     public ConnexionBDD(String nameDatabase, String loginDatabase, String passwordDatabase) throws SQLException, ClassNotFoundException {
         // chargement driver "com.mysql.jdbc.Driver" 
@@ -60,7 +71,6 @@ public class ConnexionBDD {
         // création d'un ordre SQL (statement) 
         stmt = conn.createStatement();
     }
-
 
     public Utilisateur Connexionutilisateur(String Email, String motdepasse) {
 
@@ -110,21 +120,34 @@ public class ConnexionBDD {
 
     }
 
-    public Liste_Seances Mescours(Utilisateur utilisateur, int Semaine) throws SQLException {
+    public Liste_Seances Mescours(Utilisateur utilisateur, int Semaine) throws SQLException, ParseException {
         Liste_Seances messeances = new Liste_Seances();
 
         if (utilisateur.getDroit() == 4) {
             rset = stmt.executeQuery("select * from Etudiant where ID_Utilisateur=" + utilisateur.getID());
             rset.next();
+            int b = rset.getInt("ID_Groupe");
+            rset.close();
 
-            rset3 = stmt.executeQuery("select * from seance_groupe where ID_Groupe=" + rset.getInt(3));
-            rset3.next();
+            rset2 = stmt.executeQuery("select ID_Seance from seance_groupe where ID_Groupe=" + b);
+            //rset2 = stmt.executeQuery("select * from seance where ID='1' AND SEMAINE='1';");
+            ArrayList<Integer> bonjour = new ArrayList();
+            while (rset2.next()) {
+
+                bonjour.add(rset2.getInt(1));
+
+            }
+
+            for (Integer bonjour1 : bonjour) {
+                rset3 = stmt.executeQuery("select * from seance where (ID='" + bonjour1 + "'AND SEMAINE='1');");
+                rset3.next();
+                SimpleDateFormat h1 = new SimpleDateFormat("H:m");
+                java.util.Date h11 = h1.parse(rset3.getString(4));
+                java.util.Date h22 = h1.parse(rset3.getString(5));
+                Seance seance1 = new Seance(rset3.getInt(1), Semaine, rset3.getDate(3), h11, h22, rset3.getString(6), rset3.getInt(7), rset3.getInt(8), rset3.getInt(9));
+                messeances.ajout(seance1);
+            }
             //  System.out.println("Je suis etudiant"+ rset.getInt(1) + rset.getInt(3)+rset.getInt(2));
-
-            rset2 = stmt.executeQuery("select * from seance where ID=" + rset3.getInt(1) + "AND SEMAINE =" + Semaine);
-            rset2.next();
-            Seance seance1 = new Seance(rset2.getInt(1), Semaine, rset2.getString(3), rset2.getString(4), rset2.getString(5), rset2.getString(6), rset2.getInt(7), rset2.getInt(8), rset2.getInt(9));
-            messeances.ajout(seance1);
 
         }
         if (utilisateur.getDroit() == 3) {
@@ -136,35 +159,99 @@ public class ConnexionBDD {
 
             rset2 = stmt.executeQuery("select * from seance where ID=" + rset3.getInt(1) + "AND SEMAINE =" + Semaine);
             rset2.next();
-            Seance seance1 = new Seance(rset2.getInt(1), Semaine, rset2.getString(3), rset2.getString(4), rset2.getString(5), rset2.getString(6), rset2.getInt(7), rset2.getInt(8), rset2.getInt(9));
+            SimpleDateFormat h1 = new SimpleDateFormat("H:m");
+            Date h11 = (Date) h1.parse(rset2.getString(4));
+            Date h22 = (Date) h1.parse(rset2.getString(5));
+
+            Seance seance1 = new Seance(rset2.getInt(1), Semaine, rset2.getDate(3), h11, h22, rset2.getString(6), rset2.getInt(7), rset2.getInt(8), rset2.getInt(9));
             messeances.ajout(seance1);
         }
 
         return messeances;
 
     }
-    
-    
-    public Liste_Utilisateurs getEnseignant(Seance seance) throws SQLException
-    {
-        Liste_Utilisateurs liste1 = null; 
-        rset=stmt.executeQuery("select ID_Enseignant From seance_enseignants where ID_Seance =" + seance.getID());
-        while(rset.next())
-        {
-                rset2=stmt.executeQuery("Select * from utilisateur where ID= " + rset.getInt("ID_Enseignant"));
-                rset2.next();
-                Utilisateur utilisateur = new Utilisateur(rset2.getInt("ID"),rset2.getString("Email"),rset2.getString("PASSWD"),rset2.getString("Nom"),rset2.getString("Prenom"),rset2.getInt("Droit"));
-                liste1.ajout(utilisateur);
-                
+
+    public Liste_Groupes getGroupe(Seance seance) throws SQLException {
+        Liste_Groupes groupe = null;
+        rset = stmt.executeQuery("select ID_Groupe From seance_groupe where ID_Seance =" + seance.getID());
+        while (rset.next()) {
+            rset2 = stmt.executeQuery("select * From groupe where ID=" + rset.getInt(1));
+            groupe.ajout(new Groupe(rset2.getInt("ID"), rset2.getString("Nom"), rset2.getInt("IDPromotion")));
 
         }
-        
-        return liste1;
-        
+
+        return groupe;
     }
 
-    
+    public Liste_Utilisateurs getEnseignants(Seance seance) throws SQLException {
+        Liste_Utilisateurs liste1 = null;
+        rset = stmt.executeQuery("select ID_Enseignant From seance_enseignants where ID_Seance =" + seance.getID());
+        ArrayList<Integer> bonjour = new ArrayList();
+        while (rset.next()) {
 
-    
-   
+            bonjour.add(rset.getInt(1));
+
+        }
+        for (Integer bonjour1 : bonjour) {
+
+            rset2 = stmt.executeQuery("Select * from utilisateur where ID= " + bonjour1);
+            rset2.next();
+            Utilisateur utilisateur = new Utilisateur(rset2.getInt("ID"), rset2.getString("Email"), rset2.getString("PASSWD"), rset2.getString("Nom"), rset2.getString("Prenom"), rset2.getInt("Droit"));
+            if(utilisateur != null)
+            {
+                
+
+                liste1.ajout(utilisateur);
+            System.out.println("INCH"+liste1.LesUtilisateurs.get(0).getNom());
+            }
+            else
+            {
+                System.out.println("wtf");
+            }
+        }
+
+        return liste1;
+
+    }
+
+    public String Typecours(Seance seance) throws SQLException {
+        String nom;
+        rset = stmt.executeQuery("select * From Type_Cours where ID=" + seance.getID_Type());
+        rset.next();
+
+        nom = rset.getString("Nom");
+
+        return nom;
+    }
+
+    public Cours getCours(Seance seance) throws SQLException {
+        Cours lenom = null;
+        rset = stmt.executeQuery("select * From Cours where ID=" + seance.getID_Cours());
+        rset.next();
+        lenom = new Cours(rset.getInt("ID"), rset.getString("Nom"));
+
+        return lenom;
+    }
+
+    public Liste_Salles salle(Seance seance) throws SQLException {
+        Liste_Salles liste1 = null;
+        rset = stmt.executeQuery("select * From Salle where ID=" + seance.getID_Cours());
+        while (rset.next()) {
+            rset2 = stmt.executeQuery("Select * from salle where ID= " + rset.getInt("ID"));
+            rset2.next();
+            Salle salle = new Salle(rset2.getInt("ID"), rset2.getString("Nom"), rset2.getInt("Capacite"), rset2.getInt("ID_Site"));
+            liste1.ajout(salle);
+
+        }
+        return liste1;
+
+    }
+
+    public Site site(Salle salle) throws SQLException {
+        Site site = null;
+        rset = stmt.executeQuery("select * From Cours where ID=" + salle.ID_Site());
+        return site;
+
+    }
+
 }

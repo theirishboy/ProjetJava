@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Liste_Groupes {
     
-   ArrayList<Groupe> LesGroupes;
+   public ArrayList<Groupe> LesGroupes;
      public Liste_Groupes()
     {
          LesGroupes = new ArrayList<Groupe>();
@@ -22,5 +22,9 @@ public class Liste_Groupes {
     public void ajout(Groupe Groupe1)
     {
         LesGroupes.add(Groupe1);
+    }
+    public int size()
+    {
+        return LesGroupes.size();
     }
 }
