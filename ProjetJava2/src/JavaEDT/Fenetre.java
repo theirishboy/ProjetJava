@@ -6,6 +6,9 @@
 package JavaEDT;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class Fenetre extends JFrame {
@@ -60,8 +63,8 @@ public class Fenetre extends JFrame {
         }
     }
   
-  public Fenetre(JPanel pan, String name){
-        int statut = 1;
+  public Fenetre (JPanel pan, String name){
+        int statut = 3;
         this.panel = pan;
         
         this.setTitle("Mon emploi du temps");
@@ -120,7 +123,14 @@ public class Fenetre extends JFrame {
                 public void actionPerformed(ActionEvent e)
                 {
                     fonction = 1;
-                    changement = new FonctionsAdmin(fonction);
+                    try 
+                    {
+                        changement = new FonctionsAdmin(fonction);
+                    } 
+                    catch (ParseException ex) 
+                    {
+                        Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     changement.setVisible(true);
                 }
             });
@@ -132,7 +142,14 @@ public class Fenetre extends JFrame {
                 public void actionPerformed(ActionEvent e)
                 {
                     fonction = 2;
-                    changement = new FonctionsAdmin(fonction);
+                    try 
+                    {
+                        changement = new FonctionsAdmin(fonction);
+                    } 
+                    catch (ParseException ex) 
+                    {
+                        Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     changement.setVisible(true);
                 }
             });
@@ -144,7 +161,13 @@ public class Fenetre extends JFrame {
                 public void actionPerformed(ActionEvent e)
                 {
                     fonction = 3;
-                    changement = new FonctionsAdmin(fonction);
+                    try 
+                    {
+                        changement = new FonctionsAdmin(fonction);
+                    } 
+                    catch (ParseException ex) {
+                        Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     changement.setVisible(true);
                 }
             });
@@ -156,7 +179,13 @@ public class Fenetre extends JFrame {
                 public void actionPerformed(ActionEvent e)
                 {
                     fonction = 4;
-                    changement = new FonctionsAdmin(fonction);
+                    try 
+                    {
+                        changement = new FonctionsAdmin(fonction);
+                    } 
+                    catch (ParseException ex) {
+                        Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     changement.setVisible(true);
                 }
             });
@@ -168,7 +197,13 @@ public class Fenetre extends JFrame {
                 public void actionPerformed(ActionEvent e)
                 {
                     fonction = 5;
-                    changement = new FonctionsAdmin(fonction);
+                    try 
+                    {
+                        changement = new FonctionsAdmin(fonction);
+                    } 
+                    catch (ParseException ex) {
+                        Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     changement.setVisible(true);
                 }
             });
@@ -180,7 +215,13 @@ public class Fenetre extends JFrame {
                 public void actionPerformed(ActionEvent e)
                 {
                     fonction = 6;
-                    changement = new FonctionsAdmin(fonction);
+                    try 
+                    {
+                        changement = new FonctionsAdmin(fonction);
+                    } 
+                    catch (ParseException ex) {
+                        Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     changement.setVisible(true);
                 }
             });
@@ -192,7 +233,13 @@ public class Fenetre extends JFrame {
                 public void actionPerformed(ActionEvent e)
                 {
                     fonction = 7;
-                    changement = new FonctionsAdmin(fonction);
+                    try 
+                    {
+                        changement = new FonctionsAdmin(fonction);
+                    } 
+                    catch (ParseException ex) {
+                        Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     changement.setVisible(true);
                 }
             });
@@ -204,7 +251,13 @@ public class Fenetre extends JFrame {
                 public void actionPerformed(ActionEvent e)
                 {
                     fonction = 8;
-                    changement = new FonctionsAdmin(fonction);
+                    try 
+                    {
+                        changement = new FonctionsAdmin(fonction);
+                    } 
+                    catch (ParseException ex) {
+                        Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     changement.setVisible(true);
                 }
             });
@@ -216,7 +269,13 @@ public class Fenetre extends JFrame {
                 public void actionPerformed(ActionEvent e)
                 {
                     fonction = 9;
-                    changement = new FonctionsAdmin(fonction);
+                    try 
+                    {
+                        changement = new FonctionsAdmin(fonction);
+                    } 
+                    catch (ParseException ex) {
+                        Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     changement.setVisible(true);
                 }
             });
@@ -228,7 +287,14 @@ public class Fenetre extends JFrame {
                 public void actionPerformed(ActionEvent e)
                 {
                     fonction = 10;
-                    changement = new FonctionsAdmin(fonction);
+                    try 
+                    {
+                        changement = new FonctionsAdmin(fonction);
+                    } 
+                    catch (ParseException ex) 
+                    {
+                        Logger.getLogger(Fenetre.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     changement.setVisible(true);
                 }
             });
