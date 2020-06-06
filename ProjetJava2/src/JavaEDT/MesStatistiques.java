@@ -62,16 +62,18 @@ public class MesStatistiques extends ApplicationFrame {
           Utilisateur cetuser = maconnexion.Connexionutilisateur("marine.michenaud@edu.ece.fr", "motdepasse");
           int id = cetuser.getID();
           int statut = cetuser.getDroit();
-          /*MesStatistiques demo = new MesStatistiques("Ventes des smartphones", cetuser);         
-          demo.setSize(1000,800);       
-          RefineryUtilities.centerFrameOnScreen(demo);           
-          demo.setVisible(true);  */
+          
           System.out.println("Bonjour " + cetuser.getPrenom());
           System.out.println("Bonjour " + id);
           
           Enseignant myprof = new Enseignant(cetuser.getID(), cetuser.getEmail(), cetuser.getNom(), cetuser.getPrenom(), cetuser.getPassword(), cetuser.getDroit());
-          System.out.println("Droit " + myprof.getDroit());
-          System.out.println("Mes cours : " + myprof.getCours());
+          /*int cours1 = myprof.getMatière();
+          System.out.println("Essai matière " + cours1);*/
+          
+          MesStatistiques demo = new MesStatistiques("Ventes des smartphones", myprof);         
+          demo.setSize(1000,800);       
+          RefineryUtilities.centerFrameOnScreen(demo);           
+          demo.setVisible(true);
 
           /*if(statut == 3){
               

@@ -19,12 +19,17 @@ public class Enseignant extends Utilisateur {
      private Liste_Cours mescours;
      private ConnexionBDD maconnexion;
      private final Connection conn;
-     private final Statement stmt, stmt2;
+     private final Statement stmt, stmt2, stmt3;
      private ResultSet rset;
+     private int Cours;
      
         
     public Liste_Cours getCours(){
         return this.mescours;
+    }
+    
+    public int getMatière(){
+        return this.Cours;
     }
     
     public  Enseignant(int ID_Utilisateur, String Email, String Nom, String Prenom,String PASSWD,int Droit) throws SQLException, ClassNotFoundException
@@ -43,6 +48,7 @@ public class Enseignant extends Utilisateur {
         conn = DriverManager.getConnection(url, "root", "");
         stmt = conn.createStatement();
         stmt2 = conn.createStatement();
+        stmt3 = conn.createStatement();
         String sql1 = "SELECT ID_Cours FROM `enseignant` WHERE ID_Utilisateur = 18";
        
 
@@ -54,7 +60,7 @@ public class Enseignant extends Utilisateur {
         int sommemat3=0;
         
         while(result1.next()){
-            int Cours = result1.getInt(1); //tous les cours
+            Cours = result1.getInt(1); //tous les cours
             
             String sql2 = "SELECT ID_Cours FROM `seance` WHERE ID_Cours = '"+Cours+"'";
             result2 = stmt2.executeQuery(sql2);
@@ -64,6 +70,11 @@ public class Enseignant extends Utilisateur {
             sommeSeance++;
                     
         }
+        /*String sql3 = "SELECT Nom FROM `cours` WHERE ID = '"+Cours+"'";
+        ResultSet result3 = stmt3.executeQuery(sql2);
+        String nomCours = result3.getString(Cours);
+        
+        System.out.println("Hey" + nomCours);*/
         sommecours++;          
         System.out.println("matiere total:"+sommecours);
         System.out.println("Cours --> "+Cours+" total de séances : "+sommeSeance);
