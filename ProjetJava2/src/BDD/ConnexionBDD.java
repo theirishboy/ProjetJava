@@ -139,7 +139,7 @@ public class ConnexionBDD {
             }
 
             for (Integer bonjour1 : bonjour) {
-                rset3 = stmt.executeQuery("select * from seance where (ID='" + bonjour1 + "'AND SEMAINE='1');");
+                rset3 = stmt.executeQuery("select * from seance where (ID='" + bonjour1 + "'AND SEMAINE='"+Semaine+"');");
                 rset3.next();
                 SimpleDateFormat h1 = new SimpleDateFormat("H:m");
                 java.util.Date h11 = h1.parse(rset3.getString(4));
@@ -172,11 +172,20 @@ public class ConnexionBDD {
     }
 
     public Liste_Groupes getGroupe(Seance seance) throws SQLException {
-        Liste_Groupes groupe = null;
+        Liste_Groupes groupe = new Liste_Groupes();
         rset = stmt.executeQuery("select ID_Groupe From seance_groupe where ID_Seance =" + seance.getID());
+        ArrayList<Integer> bonjour = new ArrayList();
         while (rset.next()) {
-            rset2 = stmt.executeQuery("select * From groupe where ID=" + rset.getInt(1));
-            groupe.ajout(new Groupe(rset2.getInt("ID"), rset2.getString("Nom"), rset2.getInt("IDPromotion")));
+
+            bonjour.add(rset.getInt(1));
+
+        }
+
+        for (Integer bonjour1 : bonjour) {
+            rset2 = stmt.executeQuery("select * From groupe where ID=" + bonjour1);
+            rset2.next();
+            Groupe transition = new Groupe(rset2.getInt("ID"), rset2.getString("Nom"), rset2.getInt("IDPromotion"));
+            groupe.ajout(transition);
 
         }
 
@@ -184,10 +193,12 @@ public class ConnexionBDD {
     }
 
     public Liste_Utilisateurs getEnseignants(Seance seance) throws SQLException {
-        Liste_Utilisateurs liste1 = null;
+        Liste_Utilisateurs liste1 = new Liste_Utilisateurs();
         rset = stmt.executeQuery("select ID_Enseignant From seance_enseignants where ID_Seance =" + seance.getID());
+        int i = 0;
         ArrayList<Integer> bonjour = new ArrayList();
         while (rset.next()) {
+            i = i++;
 
             bonjour.add(rset.getInt(1));
 
@@ -197,15 +208,10 @@ public class ConnexionBDD {
             rset2 = stmt.executeQuery("Select * from utilisateur where ID= " + bonjour1);
             rset2.next();
             Utilisateur utilisateur = new Utilisateur(rset2.getInt("ID"), rset2.getString("Email"), rset2.getString("PASSWD"), rset2.getString("Nom"), rset2.getString("Prenom"), rset2.getInt("Droit"));
-            if(utilisateur != null)
-            {
-                
+            if (utilisateur != null) {
 
                 liste1.ajout(utilisateur);
-            System.out.println("INCH"+liste1.LesUtilisateurs.get(0).getNom());
-            }
-            else
-            {
+            } else {
                 System.out.println("wtf");
             }
         }
@@ -234,10 +240,16 @@ public class ConnexionBDD {
     }
 
     public Liste_Salles salle(Seance seance) throws SQLException {
-        Liste_Salles liste1 = null;
+        Liste_Salles liste1 = new Liste_Salles();
         rset = stmt.executeQuery("select * From Salle where ID=" + seance.getID_Cours());
+        ArrayList<Integer> bonjour = new ArrayList();
         while (rset.next()) {
-            rset2 = stmt.executeQuery("Select * from salle where ID= " + rset.getInt("ID"));
+
+            bonjour.add(rset.getInt(1));
+
+        }
+        for (Integer bonjour1 : bonjour) {
+            rset2 = stmt.executeQuery("Select * from salle where ID= " + bonjour1);
             rset2.next();
             Salle salle = new Salle(rset2.getInt("ID"), rset2.getString("Nom"), rset2.getInt("Capacite"), rset2.getInt("ID_Site"));
             liste1.ajout(salle);
@@ -248,8 +260,10 @@ public class ConnexionBDD {
     }
 
     public Site site(Salle salle) throws SQLException {
-        Site site = null;
-        rset = stmt.executeQuery("select * From Cours where ID=" + salle.ID_Site());
+        rset = stmt.executeQuery("select * From site where ID=" + salle.ID_Site());
+        rset.next();
+        Site site = new Site(rset.getInt("ID"),rset.getString("Nom"));
+
         return site;
 
     }

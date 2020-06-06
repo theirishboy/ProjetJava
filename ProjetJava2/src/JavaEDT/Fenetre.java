@@ -32,7 +32,6 @@ public class Fenetre extends JFrame {
   //Ces deux paramètres vont contenir le tableau de BoutonSemaine et le nombre de la semaine sur laquelle on appuie
   private BoutonSemaine[] semaine = new BoutonSemaine[53];
   private int nombre = 1;
-  private test test1 = new test();
 
   //Classe MyCationListener qui va décider de l'action lorsque l'on appuie sur le bouton
   //Cette classe reçoit en paramètre le numéro de semaine

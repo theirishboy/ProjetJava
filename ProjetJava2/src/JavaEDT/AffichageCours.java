@@ -45,7 +45,7 @@ public class AffichageCours extends JPanel {
             lesenseignants = maconnexion.getEnseignants(mesSeances.LesSeances.get(i));
             nomGroupe = maconnexion.getGroupe(mesSeances.LesSeances.get(i));
             lessalles = maconnexion.salle(mesSeances.LesSeances.get(i));
-            lesite=maconnexion.site(lessalles.LesSalles.get(1));
+            lesite=maconnexion.site(lessalles.LesSalles.get(0));
             blocx = placementJour(mesSeances.LesSeances.get(i).getDate());
             int height = calculheight(mesSeances.LesSeances.get(i).getHeureDebut(),mesSeances.LesSeances.get(i).getHeureFin());
             blocy = placementHeure(mesSeances.LesSeances.get(i).getHeureFin(),height);

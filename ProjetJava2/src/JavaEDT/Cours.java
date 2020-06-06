@@ -35,7 +35,7 @@ public class Cours extends JPanel {
         g.drawString(type+" "+cours, blocx + 50, blocy + 25);
         for(int i = 0; i < ens.size();i++)
         {
-              g.drawString(ens.LesUtilisateurs.get(i).getNom(), blocx + 50+i*10, blocy + 55);
+              g.drawString(ens.LesUtilisateurs.get(i).getNom(), blocx + 50, blocy + 45+i*10);
 
         }
            for(int i = 0; i < groupes.size();i++)
@@ -50,7 +50,7 @@ public class Cours extends JPanel {
         }
            
         
-        g.drawString(site +" "+ groupe, blocx + 50, blocy + 85);
+        g.drawString(site, blocx + 50, blocy + 85);
    }
    
    public String vraieMatiere(String mat)
@@ -78,7 +78,7 @@ public class Cours extends JPanel {
    
    public Color choixCouleur(String mat)
    {
-       Color couleur = new Color(0,0,0);
+       Color couleur = new Color(255,0,0);
        if(mat == "MathÃ©matiques")
        {
            couleur = new Color(24, 142, 254);
