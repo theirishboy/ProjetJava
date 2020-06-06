@@ -48,5 +48,9 @@ public class Utilisateur {
     {
         return this.Prenom;
     }
+    public String getPassword()
+    {
+        return this.Password;
+    }
     
 }
