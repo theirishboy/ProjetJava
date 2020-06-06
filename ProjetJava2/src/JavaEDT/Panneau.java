@@ -38,6 +38,7 @@ public class Panneau extends JPanel {
     g.setFont(font);
     g.setColor(couleur3);
     //Lundi          
+<<<<<<< HEAD
     g.drawString("Lundi", x+62, y-10);
     //Mardi         
     g.drawString("Mardi", x+270, y-10);
@@ -49,6 +50,19 @@ public class Panneau extends JPanel {
     g.drawString("Vendredi", x+884, y-10);
     //Samedi          
     g.drawString("Samedi", x+1101, y-10);
+=======
+    g.drawString("Lundi", x+65, y-10);
+    //Mardi         
+    g.drawString("Mardi", x+270, y-10);
+    //Mercredi        
+    g.drawString("Mercredi", x+465, y-10);
+    //Jeudi         
+    g.drawString("Jeudi", x+695, y-10);
+    //Vendredi         
+    g.drawString("Vendredi", x+890, y-10);
+    //Samedi          
+    g.drawString("Samedi", x+1100, y-10);
+>>>>>>> master
     
     //Les horaires
     Font hor1 = new Font("Courier", Font.BOLD, 15);
@@ -111,7 +125,11 @@ public class Panneau extends JPanel {
     blocx = placementJour(jour);
     blocy = placementHeure(heure);
     
+<<<<<<< HEAD
     Cours cours = new Cours(g, blocx, blocy, 97, 190,"elec","Delisle","ing3","TD06");
+=======
+    Cours cours = new Cours(g, blocx, blocy, 97, 190);
+>>>>>>> master
     
   } 
    
