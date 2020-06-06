@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 04 juin 2020 à 10:05
+-- Généré le :  sam. 06 juin 2020 à 08:08
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -229,6 +229,16 @@ CREATE TABLE IF NOT EXISTS `seance_enseignants` (
   KEY `ID_Enseignant` (`ID_Enseignant`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `seance_enseignants`
+--
+
+INSERT INTO `seance_enseignants` (`ID_Seance`, `ID_Enseignant`) VALUES
+(1, 3),
+(1, 17),
+(2, 3),
+(4, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -243,6 +253,15 @@ CREATE TABLE IF NOT EXISTS `seance_groupe` (
   KEY `ID_Groupe` (`ID_Groupe`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `seance_groupe`
+--
+
+INSERT INTO `seance_groupe` (`ID_Seance`, `ID_Groupe`) VALUES
+(1, 1),
+(1, 2),
+(4, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -256,6 +275,14 @@ CREATE TABLE IF NOT EXISTS `seance_salles` (
   PRIMARY KEY (`ID_Seance`,`ID_Salle`),
   KEY `ID_Salle` (`ID_Salle`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `seance_salles`
+--
+
+INSERT INTO `seance_salles` (`ID_Seance`, `ID_Salle`) VALUES
+(1, 1),
+(4, 1);
 
 -- --------------------------------------------------------
 

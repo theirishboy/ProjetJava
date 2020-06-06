@@ -33,6 +33,10 @@ public class Fenetre extends JFrame {
   private BoutonSemaine[] semaine = new BoutonSemaine[53];
   private int nombre = 1;
 
+   
+
+=======
+>>>>>>> master
   //Classe MyCationListener qui va décider de l'action lorsque l'on appuie sur le bouton
   //Cette classe reçoit en paramètre le numéro de semaine
   private final class MyActionListener implements ActionListener {
@@ -56,8 +60,11 @@ public class Fenetre extends JFrame {
         this.maconnexion1 = maconnexion;
         //String nom = name;
         int SemaineChoisi = 1;
-  
-        this.panel = new Panneau();
+=======
+  public Fenetre(JPanel pan, String name){
+        int statut = 3;
+>>>>>>> master
+        this.panel = pan;
         
         this.setTitle("Mon emploi du temps");
         Liste_Seances LesSeances = null;
