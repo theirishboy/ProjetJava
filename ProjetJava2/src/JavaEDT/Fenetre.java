@@ -41,11 +41,29 @@ public class Fenetre extends JFrame {
   //Cette classe reçoit en paramètre le numéro de semaine
   private final class MyActionListener implements ActionListener {
         private final int index;
-        private MyActionListener(int nb) {
-            index = nb;
+        private MyActionListener(int nb) 
+        {
+            index = nb + 1;
         }
         //Lorsqu'on appuie sur un bouton, on donne à l'attribut nombre la valeur de la semaine
-        public void actionPerformed(ActionEvent theActionEvent) {
+        public void actionPerformed(ActionEvent theActionEvent) 
+        {
+            //On parcourt tous les BoutonSemaine pour trouver celui qui était appuyé avant
+            for(int i = 0; i < 53; ++i)
+            {
+                //Condition qui est activée que si le bouton était appuyé
+                if(semaine[i].getAppui() == true)
+                {
+                    //On passe le bouton en non-appuyé et on lui redonne une couleur normale
+                    semaine[i].setAppui(true);
+                    semaine[i].setBackground(new Color(185,231,227));
+                }
+                //On passe la nouveau bouton appuyé en appuyé
+                semaine[index-1].setAppui(false);
+                //On met sa bordure en noir
+                semaine[index-1].setBackground(Color.black);
+            }
+            
             nombre = index;
             //Ici test qui prouve que nombre est bien égale à la valeur de la case appuyée
             System.out.println(index);
@@ -85,7 +103,7 @@ public class Fenetre extends JFrame {
             String bouton = j.toString();
             semaine[i] = new BoutonSemaine(bouton);
             //Les boutons se décalent de 35 pixels vers la droite à chaque boucle
-            semaine[i].setBounds(26*i, 35, 26, 26);
+            semaine[i].setBounds(26*i, 70, 26, 26);
             //On ajoute dans le JPanel
             container.add(semaine[i]);
         }
@@ -95,36 +113,168 @@ public class Fenetre extends JFrame {
         {
             semaine[i].addActionListener(new MyActionListener(i));
         }
+        //On ajoute ensuite le panneau avec l'emploi du temps au JPanel de la fenêtre
         container.setBackground(Color.ORANGE);
         container.setLayout(new BorderLayout());
         
-        JPanel ZoneBoutons = new JPanel();
-        ZoneBoutons.setBackground(couleur);
         
-
+        
+        //On crée un JPanel qui va afficher ce qui à en haut de la page
+        //Cela va dépendre de quel statut est l'utilisateur
         JPanel top = new JPanel();
         top.setBackground(couleur);
         top.setPreferredSize(new Dimension(1, 75));
         
         ////Statut administrateur////
         if(statut == 1){
-            JPanel zoneRecherche = new JPanel();
-            zoneRecherche.setBackground(couleur);
-            zoneRecherche.setPreferredSize(new Dimension(350, 30));
-            JTextField recherche = new JTextField();
-            JButton r = new JButton("Rechercher");
-            r.setPreferredSize(new Dimension(120, 23));
-            recherche.setPreferredSize(new Dimension(170, 23));
-            zoneRecherche.add(recherche, BorderLayout.WEST);
-            zoneRecherche.add(r, BorderLayout.EAST);
-            top.add(zoneRecherche, BorderLayout.CENTER);
-            
-            //////Les fonctions listener
-            r.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent arg0) {
-                    
+            //Création d'un JPanel contenant les boutons qui vont désigner les actions
+            JPanel zoneChoix = new JPanel();
+            zoneChoix.setBackground(couleur);
+            zoneChoix.setPreferredSize(new Dimension(this.getWidth(), 100));
+            //Boutons qui désignent chacun une fonction
+            JButton supprCours = new JButton("Supprimer un cours");
+            supprCours.setBackground(Color.white);
+            supprCours.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    fonction = 1;
+                    changement = new FonctionsAdmin(fonction);
+                    changement.setVisible(true);
                 }
             });
+            
+            JButton affecEns = new JButton("Affecter un cours à un enseignant");
+            affecEns.setBackground(Color.white);
+            affecEns.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    fonction = 2;
+                    changement = new FonctionsAdmin(fonction);
+                    changement.setVisible(true);
+                }
+            });
+            
+            JButton affecGroup = new JButton("Affecter un cours à un groupe");
+            affecGroup.setBackground(Color.white);
+            affecGroup.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    fonction = 3;
+                    changement = new FonctionsAdmin(fonction);
+                    changement.setVisible(true);
+                }
+            });
+            
+            JButton modifCours = new JButton("Modifier un cours");
+            modifCours.setBackground(Color.white);
+            modifCours.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    fonction = 4;
+                    changement = new FonctionsAdmin(fonction);
+                    changement.setVisible(true);
+                }
+            });
+            
+            JButton affecSalle = new JButton("Affecter une salle à un cours");
+            affecSalle.setBackground(Color.white);
+            affecSalle.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    fonction = 5;
+                    changement = new FonctionsAdmin(fonction);
+                    changement.setVisible(true);
+                }
+            });
+            
+            JButton ajoutCours = new JButton("Ajouter un cours");
+            ajoutCours.setBackground(Color.white);
+            ajoutCours.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    fonction = 6;
+                    changement = new FonctionsAdmin(fonction);
+                    changement.setVisible(true);
+                }
+            });
+            
+            JButton ajoutEns = new JButton("Ajouter un enseignant à un cours");
+            ajoutEns.setBackground(Color.white);
+            ajoutEns.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    fonction = 7;
+                    changement = new FonctionsAdmin(fonction);
+                    changement.setVisible(true);
+                }
+            });
+            
+            JButton ajoutGroup = new JButton("Ajouter un groupe à un cours");
+            ajoutGroup.setBackground(Color.white);
+            ajoutGroup.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    fonction = 8;
+                    changement = new FonctionsAdmin(fonction);
+                    changement.setVisible(true);
+                }
+            });
+            
+            JButton enlevEns = new JButton("Enlever un enseignant d'un cours");
+            enlevEns.setBackground(Color.white);
+            enlevEns.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    fonction = 9;
+                    changement = new FonctionsAdmin(fonction);
+                    changement.setVisible(true);
+                }
+            });
+            
+            JButton enlevGroup = new JButton("Enlever un groupe d'un cours");
+            enlevGroup.setBackground(Color.white);
+            enlevGroup.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
+                    fonction = 10;
+                    changement = new FonctionsAdmin(fonction);
+                    changement.setVisible(true);
+                }
+            });
+            
+            supprCours.setPreferredSize(new Dimension(240, 23));
+            affecEns.setPreferredSize(new Dimension(240, 23));
+            affecGroup.setPreferredSize(new Dimension(240, 23));
+            modifCours.setPreferredSize(new Dimension(240, 23));
+            affecSalle.setPreferredSize(new Dimension(240, 23));
+            ajoutCours.setPreferredSize(new Dimension(240, 23));
+            ajoutEns.setPreferredSize(new Dimension(240, 23));
+            ajoutGroup.setPreferredSize(new Dimension(240, 23));
+            enlevEns.setPreferredSize(new Dimension(240, 23));
+            enlevGroup.setPreferredSize(new Dimension(240, 23));
+            //On ajoute le bouton et la barre dans le JPanel zoneChoix
+            zoneChoix.add(supprCours, BorderLayout.EAST);
+            zoneChoix.add(affecEns, BorderLayout.EAST);
+            zoneChoix.add(affecGroup, BorderLayout.EAST);
+            zoneChoix.add(modifCours, BorderLayout.EAST);
+            zoneChoix.add(affecSalle, BorderLayout.EAST);
+            zoneChoix.add(ajoutCours, BorderLayout.EAST);
+            zoneChoix.add(ajoutEns, BorderLayout.EAST);
+            zoneChoix.add(ajoutGroup, BorderLayout.EAST);
+            zoneChoix.add(enlevEns, BorderLayout.EAST);
+            zoneChoix.add(enlevGroup, BorderLayout.EAST);
+            //On ajoute ensuite zoneRecherche dans le JPanel top
+            top.add(zoneChoix, BorderLayout.CENTER);
         }
         
         ////Statut référent////
@@ -167,7 +317,6 @@ public class Fenetre extends JFrame {
             top.add(bouton1, BorderLayout.EAST);
             
         }
-        top.add(ZoneBoutons);
         container.add(top, BorderLayout.NORTH);
         container.add(panel);
 
