@@ -22,7 +22,7 @@ public class Essai1 {
     
    Connexion fenetreConnexion = new Connexion();
     //EDT fenetreEDT = new EDT();
-    FonctionsAdmin admin = new FonctionsAdmin(1);
+   // FonctionsAdmin admin = new FonctionsAdmin(1);
     
   }       
 }

@@ -97,12 +97,15 @@ public class Panneau extends JPanel {
         g.drawString("18:30", x / 3 + 10, j * 11 + 40);
         g.drawString("19:30", x / 3 + 10, j * 12 + 40);
         g.drawString("20:30", x / 3 + 10, j * 13 + 40);
-         
-            try {
+         if(Seances != null)
+         {
+           try {
                 AffichageCours affichertout = new AffichageCours(g,Seances,this.connexion);
             } catch (SQLException ex) {
                 Logger.getLogger(Panneau.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }  
+         }
+            
      
        
 
