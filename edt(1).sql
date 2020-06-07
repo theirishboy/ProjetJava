@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 06 juin 2020 à 08:08
+-- Généré le :  Dim 07 juin 2020 à 13:58
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -208,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `seance` (
 --
 
 INSERT INTO `seance` (`ID`, `SEMAINE`, `Date`, `Heure_Debut`, `Heure_Fin`, `Nom`, `Etat`, `ID_Cours`, `ID_Type`) VALUES
-(1, 1, '2020-06-03', '19:00:00', '22:00:00', 'Prototypage', 1, 4, 1),
+(1, 1, '2020-01-04', '19:00:00', '22:00:00', 'Prototypage', 2, 4, 1),
 (2, 1, '2020-01-01', '19:00:00', '22:00:00', 'Prototypage', 1, 4, 1),
 (3, 1, '2020-06-02', '13:00:00', '14:00:00', 'Jesaispas', 1, 3, 2),
 (4, 1, '2020-01-02', '14:00:00', '16:00:00', 'uncoursdetest', 1, 3, 2),
@@ -260,6 +260,7 @@ CREATE TABLE IF NOT EXISTS `seance_groupe` (
 INSERT INTO `seance_groupe` (`ID_Seance`, `ID_Groupe`) VALUES
 (1, 1),
 (1, 2),
+(2, 3),
 (4, 1);
 
 -- --------------------------------------------------------
@@ -282,6 +283,9 @@ CREATE TABLE IF NOT EXISTS `seance_salles` (
 
 INSERT INTO `seance_salles` (`ID_Seance`, `ID_Salle`) VALUES
 (1, 1),
+(1, 2),
+(2, 3),
+(3, 4),
 (4, 1);
 
 -- --------------------------------------------------------
