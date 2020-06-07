@@ -4,10 +4,20 @@
  * and open the template in the editor.
  */
 package JavaEDT;
+import BDD.ConnexionBDD;
+import Controleur.Utilisateur;
+import Liste.Liste_Seances;
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class Recapitulatif extends JPanel{
+   ConnexionBDD maconnexion;
+   private int semaine;
+   Utilisateur newutilisateur ;
     public void paintComponent(Graphics g){
         
         Font font = new Font("Courier", Font.BOLD, 20);
@@ -66,4 +76,13 @@ public class Recapitulatif extends JPanel{
         }
         
     }
+    public ArrayList<Liste_Seances> touteslesseances() throws SQLException, ParseException
+     {
+        Liste_Seances  liste1 = new Liste_Seances();
+        ArrayList<Liste_Seances>  onessaie = null; 
+        liste1 = maconnexion.Mescours(newutilisateur,semaine);
+        return onessaie;
+        
+                
+     }
 }
