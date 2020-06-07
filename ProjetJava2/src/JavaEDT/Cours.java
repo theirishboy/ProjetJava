@@ -17,7 +17,7 @@ public class Cours extends JPanel {
     private String promo;
     private String groupe;
     
-   public Cours(Graphics g, int x, int y, int h, int w, String cours,String type, Liste_Utilisateurs ens, Liste_Groupes groupes, Liste_Salles lesalles,String site)
+   public Cours(Graphics g, int x, int y, int h, int w, String cours,String type, Liste_Utilisateurs ens, Liste_Groupes groupes, Liste_Salles lesalles,String site, int nomPromotion,int Etat)
    {  
 
     //////////////////////////////////////////////////////Bloc cours//////////////////////////////////////////////////////
@@ -26,49 +26,67 @@ public class Cours extends JPanel {
         bloch = h;
         blocw = w;
         
-        
-        couleurCours = choixCouleur(matiere);
-        
+        String coulor = vraieMatiere(cours);
+        couleurCours = choixCouleur(coulor);
+       
         g.setColor(couleurCours);
         g.fillRect(blocx, blocy, blocw, bloch);
         g.setColor(Color.BLACK);
-        g.drawString(type+" "+cours, blocx + 50, blocy + 25);
+        if(Etat == 2)
+        {
+            Color couleur = new Color(255,255,255);
+            g.setColor(couleur);
+            g.fillRect(blocx,blocy,190,20);
+            g.setColor(Color.RED);
+            g.drawString("ANNULÉ", blocx + 70,blocy+15);
+            g.setColor(Color.BLACK);
+        }
+        
+
+        int emplacement = 35;
+                g.drawString(type+" "+cours, blocx + 50, blocy+emplacement);
+
         for(int i = 0; i < ens.size();i++)
         {
-              g.drawString(ens.LesUtilisateurs.get(i).getNom(), blocx + 50, blocy + 45+i*10);
+            emplacement = emplacement+15;
+              g.drawString(ens.LesUtilisateurs.get(i).getNom(), blocx + 50, blocy +emplacement);
 
         }
            for(int i = 0; i < groupes.size();i++)
         {
-              g.drawString(groupes.LesGroupes.get(i).getNom(), blocx + 50+i*10, blocy + 65);
+               emplacement = emplacement+15;
+
+              g.drawString(groupes.LesGroupes.get(i).getNom()+" Promo : "+nomPromotion, blocx + 50, blocy + emplacement);
 
         }
             for(int i = 0; i < lesalles.size();i++)
         {
-              g.drawString(lesalles.LesSalles.get(i).getNom(), blocx + 50+i*10, blocy + 75);
+                        emplacement = emplacement+15;
+
+              g.drawString(site+" " +lesalles.LesSalles.get(i).getNom(), blocx + 50, blocy + emplacement);
 
         }
-           
+             emplacement = emplacement+15;
         
-        g.drawString(site, blocx + 50, blocy + 85);
    }
    
    public String vraieMatiere(String mat)
    {
        String nouv = "";
-       if(mat == "Math")
+       System.out.println("matiere is " + mat);
+       if("Math".equals(mat))
        {
            nouv = "MathÃ©matiques";
        }
-       else if(mat == "Info")
+       else if("Info".equals(mat))
        {
            nouv = "Informatique";
        }
-       else if(mat == "elec")
+       else if("elec".equals(mat))
        {
            nouv = "Electronique";
        }
-       else if(mat == "Phy")
+       else if("Phy".equals(mat))
        {
            nouv = "Physique";
        }
@@ -79,19 +97,19 @@ public class Cours extends JPanel {
    public Color choixCouleur(String mat)
    {
        Color couleur = new Color(255,0,0);
-       if(mat == "MathÃ©matiques")
+       if("MathÃ©matiques".equals(mat))
        {
            couleur = new Color(24, 142, 254);
        }
-       else if(mat == "Informatique")
+       else if("Informatique".equals(mat))
        {
            couleur = new Color(254,251,24);
        }
-       else if(mat == "Electronique")
+       else if("Electronique".equals(mat))
        {
            couleur = new Color(163,24,254);
        }
-       else if(mat == "Physique")
+       else if("Physique".equals(mat))
        {
            couleur = new Color(24,254,191);
        }

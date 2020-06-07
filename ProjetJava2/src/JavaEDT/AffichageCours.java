@@ -6,6 +6,7 @@
 package JavaEDT;
 
 import BDD.ConnexionBDD;
+import Controleur.Promotion;
 import Controleur.Site;
 import Controleur.Type_Cours;
 import Liste.Liste_Cours;
@@ -33,6 +34,7 @@ public class AffichageCours extends JPanel {
         String type;
         Liste_Utilisateurs lesenseignants;
         Liste_Groupes nomGroupe;
+        Promotion promotion;
         public AffichageCours(Graphics g,Liste_Seances mesSeances,ConnexionBDD maconnexion  ) throws SQLException {
              int blocx;
         int blocy;
@@ -44,15 +46,18 @@ public class AffichageCours extends JPanel {
             cours2 = maconnexion.getCours(mesSeances.LesSeances.get(i));
             lesenseignants = maconnexion.getEnseignants(mesSeances.LesSeances.get(i));
             nomGroupe = maconnexion.getGroupe(mesSeances.LesSeances.get(i));
+            int Etat = mesSeances.LesSeances.get(i).getEtat();
             lessalles = maconnexion.salle(mesSeances.LesSeances.get(i));
             lesite=maconnexion.site(lessalles.LesSalles.get(0));
+            
+            promotion = maconnexion.promotion(nomGroupe.LesGroupes.get(0));
             blocx = placementJour(mesSeances.LesSeances.get(i).getDate());
             int height = calculheight(mesSeances.LesSeances.get(i).getHeureDebut(),mesSeances.LesSeances.get(i).getHeureFin());
             blocy = placementHeure(mesSeances.LesSeances.get(i).getHeureFin(),height);
             
 
             System.out.print("Les parametre sont : " +blocx + " " + blocy + " "+height);
-            Cours cours1 = new Cours(g, blocx, blocy, height, 190,cours2.getNom(),type,lesenseignants,nomGroupe,lessalles,lesite.getNom());
+            Cours cours1 = new Cours(g, blocx, blocy, height, 190,cours2.getNom(),type,lesenseignants,nomGroupe,lessalles,lesite.getNom(),promotion.getNom(),Etat);
         }
        
         }
