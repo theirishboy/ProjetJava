@@ -471,7 +471,7 @@ public class FonctionsAdmin extends JFrame
             statement = connexionBDD.createStatement();
 
             
-            ResultSet result = statement.executeQuery("SELECT Nom FROM Seance WHERE Heure_Debut = " + heure.getTime());
+            ResultSet result = statement.executeQuery("SELECT Nom FROM Seance WHERE Heure_Debut = " + "'"+heure.getTime()+"'");
             System.out.println("Jusque là ça va");
             System.out.println(heure.getTime());
             if(result.next())

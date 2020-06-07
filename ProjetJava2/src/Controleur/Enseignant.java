@@ -22,6 +22,10 @@ public class Enseignant extends Utilisateur {
         return this.mescours;
     }
     
+    public int getMatière(){
+        return this.Cours;
+    }
+    
     public  Enseignant(int ID_Utilisateur, String Email, String Nom, String Prenom,String PASSWD,int Droit) throws SQLException, ClassNotFoundException
     {
         super(ID_Utilisateur,Email,PASSWD,Nom,Prenom,Droit);
