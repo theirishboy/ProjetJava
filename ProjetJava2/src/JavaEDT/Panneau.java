@@ -8,7 +8,9 @@ import java.awt.event.*;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -16,7 +18,11 @@ import javax.swing.*;
 public class Panneau extends JPanel {
         Liste_Seances Seances;
         ConnexionBDD connexion;
+        Date date1;
     public void paintComponent(Graphics g ) {
+        
+   
+  
         //Colonne pour l'emploi du temps
         Color couleur1 = new Color(61, 175, 175);
         Color couleur2 = new Color(195, 195, 195);
@@ -66,8 +72,7 @@ public class Panneau extends JPanel {
         g.setFont(hor1);
         g.setColor(couleur4);
         int j = (620 - 45) / 13;
-        System.out.println(this.getHeight());
-        System.out.println(j);
+        
         g.drawString("09:00", x / 3, j * 2 + 20);
         g.drawString("10:00", x / 3, j * 3 + 20);
         g.drawString("11:00", x / 3, j * 4 + 20);
@@ -97,6 +102,9 @@ public class Panneau extends JPanel {
         g.drawString("18:30", x / 3 + 10, j * 11 + 40);
         g.drawString("19:30", x / 3 + 10, j * 12 + 40);
         g.drawString("20:30", x / 3 + 10, j * 13 + 40);
+         g.setFont(hor1);
+    g.setColor(couleur4);
+
          if(Seances != null)
          {
            try {

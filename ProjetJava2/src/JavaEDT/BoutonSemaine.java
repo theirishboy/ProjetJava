@@ -5,6 +5,8 @@
  */
 package JavaEDT;
 //import com.sun.corba.se.impl.io.TypeMismatchException;
+import BDD.ConnexionBDD;
+import Controleur.Utilisateur;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.AbstractButton;
@@ -88,5 +90,7 @@ public class BoutonSemaine extends JButton
         //On écrit le texte
 	g.drawString(t, x, y-4);
     }
+
+   
 }
 
